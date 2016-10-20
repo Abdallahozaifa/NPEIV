@@ -1,0 +1,27 @@
+{
+  "name": "npeiv-webapp",
+  "version": "0.0.1",
+  "description": "Senior Design Web Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://source.developers.google.com/p/npeiv-webapp/r/default"
+  },
+  "keywords": [
+    "npeiv"
+  ],
+  "author": "Hozaifa Abdalla <abdallahozaifa19527@gmail.com>, Luke Poniatowski <lukeponiatowski@gmai.com>, Clint Motosicky <cmoto19@gmail.com>",
+  "license": "MIT",
+  "engines": {
+		"node": "~4.4.5"
+	},
+  "dependencies": {
+		"body-parser": "~1.15.2",
+		"express": "~4.14.0",
+		"fs": "~0.0.1",
+		"gcloud": "~0.37.0"
+	}
+}
