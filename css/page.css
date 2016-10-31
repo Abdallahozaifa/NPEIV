@@ -1,0 +1,135 @@
+html {
+    -webkit-backface-visibility: hidden;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* MassUsable */
+
+.float_right {
+    float: right;
+}
+
+.float_left {
+    float: left;
+}
+
+.font_small {
+    font-size: 16px;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 1px 1px 1px;
+}
+
+.font_med {
+    font-size: 24px;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 1px 1px 1px;
+}
+
+.font_big {
+    font-size: 36px;
+    line-height: 1;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 1px 1px 1px;
+}
+
+.font_tight {
+    padding: 0;
+    margin: 0;
+}
+
+.font_bold {
+    font-weight: bold;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently not supported by any browser */
+}
+
+
+/* Content */
+
+.body_prime {
+    max-width: 80vw;
+    padding-top: 47px;
+    margin: auto;
+}
+
+.widget {
+    margin : 5px 0px 0px 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Naviagation */
+
+#main_header_bar {
+    position: fixed;
+    width: 100vw;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+#navigation_holder {
+    position: absolute;
+    right: 0;
+    z-index: 9;
+    display: flex;
+    flex-flow: row;
+}
+
+.main_header_item {
+    margin: 8px 24px 2px 8px;
+    display: block;
+    cursor: pointer;
+}
+
+.navigation_list {
+    right: 0;
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    transition: all 0.25s cubic-bezier(0.15, 0.5, 0.2, .8);
+    transform: translate(0, -100%) scale(0, 0);
+    text-align: center;
+}
+
+.navigation_list--active {
+    position: relative;
+    transform: translate(0, 0) scale(1, 1);
+}
+
+.navigation_item {
+    flex: 0 0 0%;
+    position: relative;
+    padding: 1vh 2px 1vh 2px;
+}
+
+.navigation_item:hover {
+    background: rgba(230, 230, 230, 0.5);
+}
+
+.navigation_link {
+    text-decoration: none;
+}

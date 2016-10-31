@@ -1,0 +1,62 @@
+
+.c_blue {
+  color: #5fc7ea;
+}
+
+.c_red {
+  color: #e68568;
+}
+
+.c_green {
+  color: #68e6ac;
+}
+
+.c_yellow {
+  color: #e6d068;
+}
+
+.c_white {
+  color: #ffffff;
+}
+
+.c_purple {
+  color: #9370DB;
+}
+
+.c_dark {
+  color: #2b3033;
+}
+
+/**/
+
+.b_blue {
+  background: #5fc7ea;
+}
+
+.b_red {
+  background: #e68568;
+}
+
+.b_green {
+  background: #68e6ac;
+}
+
+.b_yellow {
+  background: #e6d068;
+}
+
+.b_white {
+  background: #ffffff;
+}
+
+.b_purple {
+  background: #9370DB;
+}
+
+.b_dark {
+  background: #2b3033;
+}
+
+.b_transparent {
+  background: transparent;
+}
