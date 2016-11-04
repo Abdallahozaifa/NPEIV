@@ -50,6 +50,6 @@ function init() { // Init Global Vars
     });
 
     ////
-
+    $('#test_flexO').flexO({}, {});
 
 }
