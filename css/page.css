@@ -101,7 +101,7 @@ ul {
     z-index: 9;
     display: flex;
     flex-flow: row;
-}
+} 
 
 .main_header_item {
     margin: 8px 24px 2px 8px;
