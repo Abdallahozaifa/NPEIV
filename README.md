@@ -1,3 +1,4 @@
-# NPEIV
+# NPEIV Web App
 
-luke
+
+(c) NPEIV, luke poniatowski, clint motosicky, Hozaifa Abdalla
