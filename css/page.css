@@ -1,8 +1,8 @@
 html {
     -webkit-backface-visibility: hidden;
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -80,10 +80,32 @@ ul {
     height: auto;
 }
 
-.widget {
-    margin : 4px 0px 0px 0px;
-    background-color: rgba(255, 255, 255, 0.8);
+.layout_row {
+    background-color: rgba(0, 0, 0, .5);
 }
+
+.layout {
+    padding: 4px 4px 4px 4px;
+}
+
+.layout_inner {
+    padding: 4px 4px 4px 4px;
+    background-color: rgb(255, 255, 255);height: auto;
+}
+
+.text_widget {}
+
+.text_widget p {
+    margin: 8px 2px 4px 8px;
+    font-size: 1.3em;
+    
+}
+
+.text_widget h2 {
+    font-weight: bold;
+    margin: 8px 2px 4px 2px;
+}
+
 
 /* Naviagation */
 
@@ -94,14 +116,14 @@ ul {
     top: 0;
     left: 0;
 }
- 
+
 #navigation_holder {
     position: absolute;
     right: 0;
     z-index: 9;
     display: flex;
     flex-flow: row;
-} 
+}
 
 .main_header_item {
     margin: 8px 24px 2px 8px;

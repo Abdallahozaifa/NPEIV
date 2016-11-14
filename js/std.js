@@ -34,7 +34,7 @@ function init() { // Init Global Vars
                     
                 }
             });
-
+            // Submenue recursions
             for (var x in list) {
                 $('#' + nav_id + ' ul').append("<li class='navigation_item '><a href='" + list[x].link + "' class='navigation_link fa " + list[x].icon + " c_white'> <h5 class='font_small font_tight'>" + list[x].name + "</h5></a></li>");
                 
@@ -50,6 +50,9 @@ function init() { // Init Global Vars
     });
 
     ////
-    $('#test_flexO').flexO({}, {});
-
+    $('.body_prime').initLayout({'style' : '50_50'}, null);
+    $('.body_prime').initLayout({'style' : '100_0'}, null);
+    $('.body_prime').initLayout({'style' : '30_30_30'}, null);
+    $('#test_layout_123').addText("tryHard.js", "WOW!", {}, null);
+    $('#test_layout_123').addText("123", 'AABCA', {}, null);
 }

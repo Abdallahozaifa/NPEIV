@@ -24,7 +24,7 @@
 
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/std.js'></script>
-    <script type='text/javascript' src='/js/flexO.js'></script>
+    <script type='text/javascript' src='/js/tryHard.js'></script>
 </head>
 
 <body class='b_purple'>
@@ -39,71 +39,57 @@
 
     </nav>
 
-    <div class='body_prime'>
+    <div class='body_prime container-fluid'>
 
         <!-- Nav Items Are Populated Here -->
         <div id='navigation_holder'></div>
-        <!--
-        <div id='test_flexO'>
-            <div class='widget'>HELLO WORLD</div>
-            <div class='widget'>HELLO WORLD
-                <div class='widget'>HELLO WORLD</div>
+
+        <div class='row layout_row'>
+            <!-- 100 layout -->
+            <div class='layout col-sm-12 '>
+                <div class='layout_inner'>A : 100 layout
+                    
+                    <div class='text_widget'> <h2>This is a sample heading</h2> <p>This is a sample paragraph</p> </div>
+                    <img src='/img/NPEIV.jpg'/>
+                </div>
             </div>
-            <div class='widget'>HELLO WORLD</div>
-            
-            <div class='widget'>HELLO WORLD</div>
-            <div class='widget'>HELLO WORLD</div>
         </div>
-        -->
-        
-        <div class='container-fluid'> 
-            <div class='row'> 
-                <div class='widget col-md-6 '>
-                    So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am also not
-                    sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the div to be evenly
-                    distributed (shrink till the container width == one column).
-                    </br>
-                    <div class='widget col-md-6 '>
-                        So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am also
-                        not sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the div to
-                        be evenly distributed (shrink till the container width == one column).
 
-                    </div>
-                    <div class='widget col-md-6 '>
-                        So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am also
-                        not sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the div to
-                        be evenly distributed (shrink till the container width == one column).
-                    </div>
-                </div>
-                <div class='widget col-md-6 '>
-                    So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am also not
-                    sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the div to be evenly
-                    distributed (shrink till the container width == one column).
-                    </br>
-                    <div class='widget row '>
-                        So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am also
-                        not sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the div to
-                        be evenly distributed (shrink till the container width == one column).
-                        </br>
-                        <div class='widget row '>
-                            So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns). I am
-                            also not sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside the
-                            div to be evenly distributed (shrink till the container width == one column).
-                            </br>
-                            <div class='widget row '>
-                                So, I want a div, with a class centered to be centered within the container. I may use a row if there are multiple divs, but for now I just want a div with size of one column centered within the container (12 columns).
-                                I am also not sure the above approach is good enough as the intention is not to offset the div by half. I do not need free spaces outside the div and the contents of the div shrink in proportion. I want to empty space outside
-                                the div to be evenly distributed (shrink till the container width == one column).
-                            </div>
-                        </div>
+        <div class='row layout_row' style="">
+            <!-- 50/50 layout -->
+            <div class='layout col-sm-6'>
+                <div id='test_layout_123' class='layout_inner'>A : 50/50 layout</div>
+            </div>
+            <div class='layout col-sm-6'>
+                <div class='layout_inner'>B : 50/50 layout</div>
+            </div>
+        </div>
 
-
-                    </div>
-                </div>
-
+        <div class='row layout_row'>
+            <!-- 70/30 layout -->
+            <div class='layout col-md-8 '>
+                <div class='layout_inner'>A : 70/30 layout</div>
+            </div>
+            <div class='layout col-md-4 '>
+                <div class='layout_inner'>B : 70/30 layout</div>
             </div>
         </div>
         
+        <div class='row layout_row'>
+            <!-- 70/30 layout -->
+            <div class='layout col-sm-4 '>
+                <div class='layout_inner'>A : 30/30/30 layout</div>
+            </div>
+            <div class='layout col-sm-4 '>
+                <div class='layout_inner'>B : 30/30/30 layout</div>
+            </div>
+            <div class='layout col-sm-4 '>
+                <div class='layout_inner'>C : 30/30/30 layout</div>
+            </div>
+        </div>
+
+
+
 
 
     </div>
