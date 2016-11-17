@@ -2,12 +2,21 @@
 /*global $*/
 var menu_icon;
 var main_nav_menu;
+var donate_button;
 
 $(document).ready(init);
 
 function init() { // Init Global Vars
     menu_icon = $('#dropdown_navigation_bar_icon')[0];
     main_nav_menu = $('.main_navigation_list')[0];
+    donate_button = $('#paypal_icon')[0];
+
+    $(donate_button).click(function()
+    {
+        window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=95JRBJS74QBJS';
+    });
+
+
 
     //// Fetch Navigation
     $.post('/fetch/navigation/main', function(data) {
@@ -15,7 +24,7 @@ function init() { // Init Global Vars
         
         data = JSON.parse(data);
         
-        populateNavigation(menu_icon, $('#navigation_holder')[0], data, 0, 'navigation_list'); // Start w/ main nav. list from the menu icon who all inheri from .navigation_list
+        populateNavigation(menu_icon, $('#navigation_holder')[0], data, 0, 'navigation_list'); // Start w/ main nav. list from the menu icon who all inherit from .navigation_list
         function populateNavigation(clicky, parent, list, counter, parent_id) {
             var nav_id = 'nav_menu_' + counter++;
             $(parent).prepend("<nav id='" + nav_id + "' class='"+parent_id+" b_dark' >");

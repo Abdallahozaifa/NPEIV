@@ -46,6 +46,13 @@ ul {
     padding: 1px 1px 1px 1px;
 }
 
+.font_big1 {
+    font-size: 55px;
+    line-height: 1;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 1px 1px 1px;
+}
+
 .font_tight {
     padding: 0;
     margin: 0;
@@ -75,7 +82,7 @@ ul {
 
 .body_prime {
     max-width: 80vw;
-    padding-top: 47px;
+    padding-top: 68px;
     margin: auto;
     height: auto;
 }
@@ -126,7 +133,7 @@ ul {
 }
 
 .main_header_item {
-    margin: 8px 24px 2px 8px;
+    margin: 8px 10px 2px 10px;
     display: block;
     cursor: pointer;
 }
@@ -158,4 +165,29 @@ ul {
 
 .navigation_link {
     text-decoration: none;
+}
+
+
+input[type=text] {
+    
+    
+    color: black;
+    width: 125px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/img/search1.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: left 0.4s ease-in-out;
+    -moz-transform: left 0.4s ease-in-out;
+    -o-transform: left 0.4s ease-in-out;
+    transition: left 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
 }

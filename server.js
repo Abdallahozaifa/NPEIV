@@ -3,12 +3,8 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const bodyParser = require("body-parser");
-const gcloud = require('gcloud');
-const datastore = gcloud.datastore({
-  //projectId: 'my-project',
-  //keyFilename: '/path/to/keyfile.json'
-});
 
+var DataStoreGate = require('./server_modules/DataStoreGate.js');
 
 /* SERVER */
 const root = __dirname;

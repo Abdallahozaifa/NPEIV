@@ -9,6 +9,7 @@
 
     <!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -30,14 +31,30 @@
 <body class='b_purple'>
     <!-- Header+Nav Bar -->
     <nav id='main_header_bar' class='b_dark c_white noselect'>
-        <h1 class='main_header_item font_big float_left' id='nav_title'>NPEIV</h1>
+        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
+        </h1>
 
-        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
+        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars' >
+            <div class='font_small'>Menu</div>
 
-
+         <!-- Donate Button -->
         </div>
+        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+            <div class='font_small'>Donate</div>
+        </div>
+        
+         <!-- Search Bar -->
+         
+        <form class='main_header_item float_right font_big' >
+              <input type="text" name="search" placeholder="Search..">
+        </form>
+
+        
 
     </nav>
+
+        
+
 
     <div class='body_prime container-fluid'>
 

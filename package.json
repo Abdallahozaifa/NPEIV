@@ -16,12 +16,13 @@
   "author": "Hozaifa Abdalla <abdallahozaifa19527@gmail.com>, Luke Poniatowski <lukeponiatowski@gmai.com>, Clint Motosicky <cmoto19@gmail.com>",
   "license": "MIT",
   "engines": {
-		"node": "~4.4.5"
-	},
+    "node": "~4.4.5"
+  },
   "dependencies": {
-		"body-parser": "~1.15.2",
-		"express": "~4.14.0",
-		"fs": "~0.0.1",
-		"gcloud": "~0.37.0"
-	}
+    "body-parser": "~1.15.2",
+    "express": "~4.14.0",
+    "fs": "~0.0.1",
+    "gcloud": "~0.37.0",
+    "google-cloud": "^0.44.0"
+  }
 }

@@ -10,20 +10,23 @@ module.exports = function(app) {
 // Main Navigation
 var main_navigation = [
     new navItem('Home', '/', 'fa-home', []),
-    new navItem('Help', '/help', 'fa-heart', []),
+    new navItem('Help', '#', 'fa-heart', []),
     new navItem('About', '#', 'fa-book', [ 
-        new navItem('Org.', '#', 'fa-book', [
-                new navItem('Members', '/about/org/members', 'fa-book', [])
-            ]),
-        new navItem('Mission', '/about/mission', 'fa-book', [])
+        new navItem('Action Teams', '#', 'fa-users', []),
+        new navItem('Groups Involved', '/about/mission', 'fa-book', [])
         ]),
+    new navItem('Educate', '#', 'fa-graduation-cap', []),
     new navItem('Events', '#', 'fa-calendar', [
         new navItem('Test', '#s', 'fa-calendar', [])
         ]),
-    new navItem('Contact', '/contact', 'fa-thumbs-o-up', []),
-    new navItem('Donate', '/donate', 'fa-paypal', []),
-    new navItem('Join', '/join', 'fa-users', []),
-    new navItem('Login', '/login', 'fa-sign-in', []),
+    new navItem('Contact', '#', 'fa-thumbs-o-up', [
+        new navItem('Facebook', 'https://www.facebook.com/NPEIV/', 'fa-facebook-official', []),
+        new navItem('Twitter', 'https://twitter.com/NPEIV', 'fa-twitter-square', []),
+        new navItem('LinkedIn', 'https://www.linkedin.com/in/crystal-roman-97aa3a106', 'fa-linkedin-square', []),
+        new navItem('Contact Us', '#', 'fa-phone-square', [])
+        ]),
+    new navItem('Join', '#', 'fa-users', []),
+    new navItem('Login', '#', 'fa-sign-in', []),
 ];
 
 
