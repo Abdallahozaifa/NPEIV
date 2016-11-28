@@ -4,7 +4,8 @@
   "description": "Senior Design Web Application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

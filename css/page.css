@@ -146,6 +146,7 @@ ul {
     transition: all 0.25s cubic-bezier(0.15, 0.5, 0.2, .8);
     transform: translate(0, -100%) scale(0, 0);
     text-align: center;
+   
 }
 
 .navigation_list--active {
@@ -157,6 +158,8 @@ ul {
     flex: 0 0 0%;
     position: relative;
     padding: 1vh 2px 1vh 2px;
+    max-width: 100px;
+    min-width: 65px;
 }
 
 .navigation_item:hover {

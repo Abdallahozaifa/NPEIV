@@ -11,57 +11,104 @@ function init() { // Init Global Vars
     main_nav_menu = $('.main_navigation_list')[0];
     donate_button = $('#paypal_icon')[0];
 
-    $(donate_button).click(function()
-    {
+    // Donate button and link
+    $(donate_button).click(function() {
         window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=95JRBJS74QBJS';
     });
 
 
 
-    //// Fetch Navigation
+    //// Fetch Navigation Object from server
     $.post('/fetch/navigation/main', function(data) {
         //// Populate Navigation, w/ recursive algo
-        
+
         data = JSON.parse(data);
-        
-        populateNavigation(menu_icon, $('#navigation_holder')[0], data, 0, 'navigation_list'); // Start w/ main nav. list from the menu icon who all inherit from .navigation_list
+
+        // Start w/ main nav. list from the menu icon who all inherit from .navigation_list
         function populateNavigation(clicky, parent, list, counter, parent_id) {
+            // Each nav list is givin a unique id
+            // Each Child has the class of their parnets id
+            
             var nav_id = 'nav_menu_' + counter++;
-            $(parent).prepend("<nav id='" + nav_id + "' class='"+parent_id+" b_dark' >");
+
+            // Add nav list to parent
+            $(parent).prepend("<nav id='" + nav_id + "' class='" + parent_id + " b_dark' >");
+
+            // Create new nav item list to the new nav list 
             $('#' + nav_id).append("<ul class='font_med'>");
 
+            // Create on click listener for the navigation item
             $(clicky).on('click', function() {
-                if( $('#' + nav_id )[0].classList.toggle('navigation_list--active') == true ){
+                
+                // If its submenue is not open, open it, and close its neighbors
+                if ($('#' + nav_id)[0].classList.contains('navigation_list--active') == false) {
+                    // Get neighbours, and close them
+                    //console.log( $('#' + nav_id).parent().children() );
+                    
+                    $('.' + parent_id).each(function(index) {
+                       this.classList.remove('navigation_list--active');
+                    });
+                    //$('#' + nav_id).parent().add('navigation_list--active');
+                    $('#' + nav_id)[0].classList. add('navigation_list--active');
+                    
+                    
+                    /*$("#navigation_holder").children().each(function(index, elm) {
+
+                        if ($(elm).hasClass("navigation_list--active")) {
+                            console.log(elm);
+                            //elm.removeClass("navigation_list--active");
+                        }
+                    });*/
+                    
+                    //console.log($("#navigation_holder").children());
+                    
                     // Close neighbors, when list is oppened
                     // !! TO DO
                     //$(parent).each(function(index){ this.classList.remove('navigation_list--active'); });
+
+                    /*var elements = document.getElementsByClassName('submain');
+                    for(var k = 0; k < elements.length; k++){
+                        elements[k].style.display = 'none'; // Hide all elements.
+                    }
+                    */
+
+
+
+
+                }
+                else {
+                    // If the submenye is open, close it and its children
+                    $('#' + nav_id)[0].classList.remove('navigation_list--active');
                     
-                    
-                } else {
-                    // Close all children, when the root is closed
-                    $('.' + nav_id).each(function(index){ this.classList.remove('navigation_list--active'); });
-                    
+                    $('.' + nav_id).parent().children().each(function(index) {
+                        this.classList.remove('navigation_list--active');
+                    });
+
                 }
             });
-            // Submenue recursions
+
+            // Submenue generation
             for (var x in list) {
                 $('#' + nav_id + ' ul').append("<li class='navigation_item '><a href='" + list[x].link + "' class='navigation_link fa " + list[x].icon + " c_white'> <h5 class='font_small font_tight'>" + list[x].name + "</h5></a></li>");
-                
+
                 if (list[x].submenu.length > 0) {
                     //console.log($('#' + nav_id + ' ul li a').last()[0]);
-                    populateNavigation($('#' + nav_id + ' ul li a').last()[0], parent, list[x].submenu, (counter++) * 100,parent_id + ' ' + nav_id);
+                    populateNavigation($('#' + nav_id + ' ul li a').last()[0], parent, list[x].submenu, (counter++) * 100, parent_id + ' ' + nav_id);
                 }
-                
+
             }
 
         }
-        
+        populateNavigation(menu_icon, $('#navigation_holder')[0], data, 0, 'navigation_list');
+
     });
 
-    ////
-    $('.body_prime').initLayout({'style' : '50_50'}, null);
-    $('.body_prime').initLayout({'style' : '100_0'}, null);
-    $('.body_prime').initLayout({'style' : '30_30_30'}, null);
-    $('#test_layout_123').addText("tryHard.js", "WOW!", {}, null);
-    $('#test_layout_123').addText("123", 'AABCA', {}, null);
+    //// Temp demo layout and widgets
+    //$('.body_prime').initLayout({'style' : '50_50'}, null);
+    //$('.body_prime').initLayout({'style' : '100_0'}, null);
+    //$('.body_prime').initLayout({'style' : '30_30_30'}, null);
+    $('#test_layout_123').addText('AaBbCc', 'Content', {}, null);
+    $('#test_layout_123').addText('</br>...</br>', 'More Content', {}, null);
+    $('#test_layout_456').addText('AaBbCc', 'Content', {}, null);
+    $('#test_layout_456').addText('</br>...</br>', 'More Content', {}, null);
 }

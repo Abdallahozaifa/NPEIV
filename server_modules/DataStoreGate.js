@@ -13,6 +13,7 @@ var DataStoreGate = (function () {
        * @param {object} obj - any object 
        * @param {String} kind - the type of data being added to the datastore
        * @param {String} primKey - the value of the data being added
+       * @param {function} callback - callback function
        * @return {function} callback - callback function
        */
        this.addObjToStore = function(obj, kind, primKey, callback) {
@@ -41,6 +42,7 @@ var DataStoreGate = (function () {
        * Removes an object from the datastore
        * @param {String} kind - the type of data being added to the datastore
        * @param {String} primKey - the value of the data being added
+       * @param {function} callback - callback function
        * @return {function} callback - callback function
        */
       this.deleteObjFromStore = function(kind, primKey, callback) {
@@ -64,9 +66,10 @@ var DataStoreGate = (function () {
       };
       
       /**
-       * gets an object from the datastore
+       * Gets an object from the datastore
        * @param {String} kind - the type of data being added to the datastore
        * @param {String} primKey - the value of the data being added
+       * @param {function} callback - callback function
        * @return {function} callback - callback function
        */
       this.getObjFromStore = function(kind, primKey, callback){
@@ -76,11 +79,44 @@ var DataStoreGate = (function () {
           return callback(err || entity);
         });
       };
-
+      
+      /* !!!!NEEDS REWORK!!!!*/
+      /**
+       * Updates an object from the datastore
+       * @param {String} kind - the type of data being added to the datastore
+       * @param {String} primKey - the value of the data being added
+       * @param {function} callback - callback function
+       * @return {function} callback - callback function
+       */
+      this.updateObjFromStore = function(kind, primKey, callback){
+        this.getObjFromStore(kind, primKey, function(result){
+          if(result != undefined){
+            
+            var objKey = datastoreClient.key([kind, primKey]);
+            datastoreClient.save({
+                key: objKey,
+                data: obj
+              }, function (err) {
+                 if (err) {
+                 return callback(err);
+              }
+        
+              console.log(kind + ": " + primKey + ' created successfully.');
+            });
+            var objKey = datastoreClient.key([kind, primKey]);
+        
+            datastoreClient.get(objKey, function(err, entity) {
+              return callback(err || entity);
+            });
+          }
+        });
+      };
+        
   exports.addObjToStore = this.addObjToStore;
   exports.deleteObjFromStore = this.deleteObjFromStore;
   exports.getObjFromStore = this.getObjFromStore;
-  
+  exports.updateObjFromStore = this.updateObjFromStore;
+        
   /*
     Database Example
     DataStoreGate.addObjToStore({fName: "Hozaifa", lName: "Abdalla"}, "User", "Hozaifa Abdalla", function(err){
@@ -95,4 +131,4 @@ var DataStoreGate = (function () {
       console.log("Object retrieved from Store: " + result); 
     });
   */
-})();
+});

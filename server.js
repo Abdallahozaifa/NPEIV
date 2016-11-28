@@ -21,7 +21,7 @@ app.use('/img', express.static('img'));
 
 /*GET HOMEPAGE*/
 app.get('/', function(req, res) {
-    res.sendFile(root + '/index.html', function (err) {
+    res.sendFile(root + '/index.html', function(err) {
         if (err) {
             res.status(err.status).end();
         }
@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
 
 /*GET PUBLIC PAGE*/
 app.get('/public/*', function(req, res) {
-    res.sendFile(root + '/html/' + req.path  + '.html', function (err) {
+    res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {
             res.status(err.status).end();
         }
@@ -39,7 +39,7 @@ app.get('/public/*', function(req, res) {
 
 /*GET MEMBER PAGE*/
 app.get('/member/*', function(req, res) {
-    res.sendFile(root+ '/html/' + req.path  + '.html', function (err) {
+    res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {
             res.status(err.status).end();
         }
@@ -48,11 +48,14 @@ app.get('/member/*', function(req, res) {
 
 /* Listens on the Server Port */
 const server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
-    if(process.env.PORT){
+    if (process.env.PORT) {
         console.log("https://npeiv-webapp-abdallahozaifa.c9users.io/");
-    }else{
+    }
+    else {
         console.log('App listening at http://%s:%s', server.address().address, server.address().port);
     }
 });
 
-require('./server_modules/navigation.js')(app); // Start dynamic navication
+
+
+require('./server_modules/navigation.js')(app); // Start dynamic navigation
