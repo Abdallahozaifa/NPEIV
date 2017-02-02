@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NPEIV-Login</title>
+    <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
+    <!-- Disables Mobile Zoom -->
+    <meta name='viewport' content='width=device-width'>
+
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
+
+    <!-- Font Awsome -->
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <!-- Bootstrap -->
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Style Sheets -->
+    <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
+    <link href='/css/page.css' rel='stylesheet'>
+    <link href='/css/colors.css' rel='stylesheet'>
+    <style type="text/css">
+        /* login css file*/
+        
+        .loginInput {
+            width: 25%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        .loginformbutton {
+            background-color: #4CAF50;
+            color: white;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 25%;
+        }
+        
+        .cancelbtn {
+            /*  width: auto;
+    padding: 10px 18px;*/
+            background-color: #f44336;
+            box-sizing: border-box;
+            position: relative;
+            width: 30%;
+            padding: 10px 0px;
+            border: none;
+            text-align: center;
+            line-height: 20px;
+            white-space: nowrap;
+            border-radius: 0.2em;
+            font-size: 16px;
+        }
+        
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+        
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+        
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .container1 {
+            padding: 16px;
+            text-align: left;
+        }
+        
+        span.psw {
+            float: right;
+        }
+        
+        .new_account {
+            font-size: 25px;
+        }
+        /* Change styles for span and cancel button on extra small screens */
+        
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+        /*    For green login button only     */
+        
+        .loginBtnr {
+            box-sizing: border-box;
+            position: relative;
+            width: 30%;
+            border: none;
+            padding: 10px 0px;
+            text-align: center;
+            line-height: 20px;
+            white-space: nowrap;
+            border-radius: 0.2em;
+            font-size: 16px;
+            color: #FFF;
+        }
+        
+        .loginBtnr:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 100%;
+        }
+        
+        .loginBtnr:focus {
+            outline: none;
+        }
+        
+        .loginBtnr:active {
+            box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+        }
+        /* Shared */
+        
+        .loginBtn {
+            box-sizing: border-box;
+            position: relative;
+            margin: 0.2em;
+            padding: 0 15px 0 46px;
+            width: 75%;
+            border: none;
+            text-align: left;
+            line-height: 35px;
+            white-space: nowrap;
+            border-radius: 0.2em;
+            font-size: 1.4vw;
+            color: #FFF;
+        }
+        
+        .loginBtn:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 100%;
+        }
+        
+        .loginBtn:focus {
+            outline: none;
+        }
+        
+        .loginBtn:active {
+            box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+        }
+        /* Facebook button*/
+        
+        .loginBtn--facebook {
+            background-color: #4C69BA;
+            background-image: linear-gradient(#4C69BA, #3B55A0);
+            /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+            text-shadow: 0 -1px 0 #354C8C;
+        }
+        
+        .loginBtn--facebook:before {
+            border-right: #364e92 1px solid;
+            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+        }
+        
+        .loginBtn--facebook:hover,
+        .loginBtn--facebook:focus {
+            background-color: #5B7BD5;
+            background-image: linear-gradient(#5B7BD5, #4864B1);
+        }
+        /* Google button*/
+        
+        .loginBtn--google {
+            /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+            background: #DD4B39;
+        }
+        
+        .loginBtn--google:before {
+            border-right: #BB3F30 1px solid;
+            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+        }
+        
+        .loginBtn--google:hover,
+        .loginBtn--google:focus {
+            background: #E74B37;
+        }
+        /* Where the table is created*/
+        
+        .login {
+            font-size: 25px;
+        }
+        
+        
+        .main_head {
+            text-align: center;
+            font-size: 3vw;
+            color: white;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script type='text/javascript' src='/js/std.js'></script>
+    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+
+    <!-- jQueryUI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="b_purple">
+
+    <!-- Header+Nav Bar -->
+    <nav id='main_header_bar' class='b_dark c_white noselect'>
+        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
+        </h1>
+
+        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
+            <div class='font_small'>Menu</div>
+
+            <!-- Donate Button -->
+        </div>
+        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+            <div class='font_small'>Donate</div>
+        </div>
+
+        <!-- Search Bar -->
+
+        <form class='main_header_item float_right font_big'>
+            <input class='searchBar' type="text" name="search" placeholder="Search...">
+        </form>
+
+    </nav>
+
+    <div class='body_prime container-fluid'>
+
+        <!-- Nav Items Are Populated Here -->
+        <div id='navigation_holder'></div>
+        
+        <div>
+            <h1 class="main_head">Login</h1>
+        </div>
+
+        <div class='row  b_white'>
+            <div class="col-sm-6">
+
+                <div class="container">
+                    
+                    <br />
+
+                    <i class="fa fa-user-circle-o c_purple" style="font-size:18vh" aria-hidden="true"></i>
+
+                    <br />
+                    <br />
+                    <br />
+                    <label class="login"><b>User Login</b></label>
+                    <br />
+
+                    <i class="fa fa-envelope-o fa-fw" style="font-size:4vh" aria-hidden="true"></i>
+                    <input type="text" placeholder="Enter Email" id="user_name" name="uname" style="width: 75%" class='loginInput' required>
+                    <br />
+                    <br />
+
+                    <i class="fa fa-key fa-fw" style="font-size:4vh" aria-hidden="true"></i>
+                    <input type="password" placeholder="Enter Password" id="pswd" name="pswd" style="width: 75%" class='loginInput' required>
+                    <br />
+                    <br />
+                    <button type="submit" class="loginformbutton loginBtnr">Login</button>
+
+                    <button type="button" class="loginformbutton cancelbtn" onclick="location.href='/'">Cancel</button>
+
+                </div>
+
+                <br />
+
+                <div class="container1" style="background-color:#f1f1f1" align="left">
+                    <input type="checkbox" checked="checked" align="left"> Remember me </input>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-5">
+
+                <!-- This is where people can login with facebook and select a create accound page -->
+                <div class="container">
+
+                    <div class="imgcontainer">
+                        <img src="/img/NPEIV.jpg" alt="Avatar" class="avatar" style="width:18vh;height:18vh;">
+                    </div>
+                    <br />
+
+                    <span class="new_account">Don't have an account? <a href="create_acc"><br> Sign Up Today!</a></span>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <button class="loginformbutton loginBtn loginBtn--google "> Login with Google </button>
+                    <br />
+                    <br />
+                    <button class="loginformbutton loginBtn loginBtn--facebook "> Login with Facebook </button>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../../js/login.js"></script>
+</body>
+
+</html>

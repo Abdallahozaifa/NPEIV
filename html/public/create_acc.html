@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NPEIV-Register Form</title>
+    <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
+
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
+
+    <!-- Font Awsome -->
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <!-- Bootstrap -->
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Style Sheets -->
+    <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
+    <link href='/css/page.css' rel='stylesheet'>
+    <link href='/css/colors.css' rel='stylesheet'>
+    <style type="text/css">
+        
+        .label1 {
+            display: block;
+            padding-left: 15px;
+            text-indent: -15px;
+        }
+        
+        .main_head {
+            text-align: center;
+            font-size: 3vw;
+            color: white;
+        }
+        
+        .info {
+            padding-left: 0.5em;
+            font-size: 1.25vw;
+        }
+        
+        .inputbox {
+            width: 75%;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            padding: 8px 10px;
+            font-size: 1vw;
+        }
+        
+        .top_pg {
+            font-size: 2vw;
+            text-align: left;
+        }
+        
+        .checkbox_ {
+            width: 100%;
+            height: 13px;
+            padding: 0;
+            margin: 0;
+            vertical-align: bottom;
+            position: relative;
+            top: -1px;
+            *overflow: hidden;
+            font-size: 1.25vw;
+        }
+        /* This is the login button information*/
+        
+        .loginBtnr {
+            box-sizing: border-box;
+            position: relative;
+            width: 50%;
+            border: none;
+            padding: 10px 0px;
+            text-align: center;
+            line-height: 20px;
+            white-space: nowrap;
+            border-radius: 0.2em;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .loginBtnr:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 34px;
+            height: 100%;
+        }
+        
+        .loginBtnr:focus {
+            outline: none;
+        }
+        
+        .loginBtnr:active {
+            box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+        }
+        /* creates the table for just two columns */
+        
+        #css-table {
+            display: table;
+            width: 100%;
+        }
+        
+        #css-table .col {
+            display: table-cell;
+            width: 45%;
+            background-color: #fff;
+        }
+        
+        #css-table .col1 {
+            display: table-cell;
+            width: 30%;
+            background-color: #fff;
+        }
+        
+        #css-table .col2 {
+            display: table-cell;
+            width: 5%;
+            background-color: #fff;
+        }
+    </style>
+    
+        <!-- JavaScript -->
+    <script type='text/javascript' src='/js/std.js'></script>
+    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+
+    <!-- jQueryUI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="b_purple">
+    
+    
+    
+    <!-- Header+Nav Bar -->
+    <nav id='main_header_bar' class='b_dark c_white noselect'>
+        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
+        </h1>
+
+        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
+            <div class='font_small'>Menu</div>
+
+            <!-- Donate Button -->
+        </div>
+        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+            <div class='font_small'>Donate</div>
+        </div>
+
+        <!-- Search Bar -->
+
+        <form class='main_header_item float_right font_big'>
+            <input class='searchBar' type="text" name="search" placeholder="Search...">
+        </form>
+
+    </nav>
+    
+    <!-- Start of the Register Form -->
+
+    <div class='body_prime container-fluid'>
+        
+        
+         <!-- Nav Items Are Populated Here -->
+        <div id='navigation_holder'></div>
+        <br />
+
+
+        <div>
+            <h1 class="main_head">Register Form</h1>
+        </div>
+
+        <div class="container" align="center">
+
+            <div id="css-table">
+
+
+                <div class="col">
+
+                    <div class="info" align="left">
+
+                        <!-- Where people input this personal information -->
+
+                        <div  class="top_pg"><u>Please fill out all fields below:</u></div>
+                        <br />
+
+                        <div  class="label1">*First Name: </div>
+                        <input class="inputbox" type='text' name='name' id='first_name' maxlength="50" required />
+                        <br />
+
+                        <div class="label1">*Last Name: </div>
+                        <input class="inputbox" type='text' name='name' id='last_name' maxlength="50" required />
+                        <br />
+
+                        <div class="label1">*Email Address:</div>
+                        <input class="inputbox" type='email' name='email' id='email' maxlength="50" required/>
+                        <br />
+
+                        <div class="label1">*Password:</div>
+                        <input class="inputbox" type='email' name='email' id='psw1' maxlength="50" required/>
+                        <br />
+
+                        <div class="label1">*Confirm Password: </div>
+                        <input class="inputbox" type='password' id='psw2' maxlength="50" required/>
+
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+
+                </div>
+
+                <div class="col2"> </div>
+
+                <div class="col1">
+
+                    <!-- Where people check the box of the actions teams/executive board that they are apart of -->
+
+                    <div class="top_pg"><u>Teams Associated With: </u></div>
+
+                    <div class="checkbox_" align="left">
+                        <br />
+
+                        <input type="checkbox" id="action_team" value="Public Awareness">Public Awareness </input>
+                        <br />
+                        <input type="checkbox" id="action_team" value="Training & Mentoring">Training & Mentoring </input>
+                        <br />
+                        <input type="checkbox" id="action_team" value="Practice">Practice</input>
+                        <br />
+                        <input type="checkbox" id="action_team" value="Research">Research</input>
+                        <br />
+                        <input type="checkbox" id="action_team" value="Public Policy">Public Policy</input>
+                        <br />
+                        <input type="checkbox" id="action_team" value="Dissemination & Translation">Dissemination & Translation</input>
+                        <br />
+
+                        <input type="checkbox" id="action_team" value="Global Peace">Global Peace</input>
+                        <br />
+
+                        <input type="checkbox" id="action_team" value="Executive Board">Executive Board</input>
+                        <br />
+                        <br />
+
+                        <button type="submit" class="loginBtnr" align="center">Create Account</button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

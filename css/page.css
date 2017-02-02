@@ -10,13 +10,11 @@ body {
     line-height: 1.5;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+
+h1 {
+    font-size: 3em;
 }
-
-
 /* MassUsable */
 
 .float_right {
@@ -89,15 +87,18 @@ ul {
 
 .layout_row {
     background-color: rgba(0, 0, 0, .5);
+    margin-right:0px;margin-left:0px
 }
 
 .layout {
-    padding: 4px 4px 4px 4px;
+    padding: 4px 0px 0px 4px;
 }
 
 .layout_inner {
-    padding: 4px 4px 4px 4px;
-    background-color: rgb(255, 255, 255);height: auto;
+    padding: 4px 4px 24px 4px;
+    background-color: rgb(255, 255, 255);
+    min-height: 76px;
+    height: auto;
 }
 
 .text_widget {}
@@ -105,7 +106,6 @@ ul {
 .text_widget p {
     margin: 8px 2px 4px 8px;
     font-size: 1.3em;
-    
 }
 
 .text_widget h2 {
@@ -113,6 +113,9 @@ ul {
     margin: 8px 2px 4px 2px;
 }
 
+.text_widget_content {
+    display: inline-block;
+}
 
 /* Naviagation */
 
@@ -138,6 +141,12 @@ ul {
     cursor: pointer;
 }
 
+.ulNavigation {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 .navigation_list {
     right: 0;
     position: absolute;
@@ -146,7 +155,6 @@ ul {
     transition: all 0.25s cubic-bezier(0.15, 0.5, 0.2, .8);
     transform: translate(0, -100%) scale(0, 0);
     text-align: center;
-   
 }
 
 .navigation_list--active {
@@ -170,10 +178,7 @@ ul {
     text-decoration: none;
 }
 
-
-input[type=text] {
-    
-    
+.searchBar {
     color: black;
     width: 125px;
     box-sizing: border-box;
@@ -191,6 +196,26 @@ input[type=text] {
     transition: left 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+.searchBar:focus {
     width: 100%;
+}
+
+#editorBar {
+    position: fixed;
+    width: 100vw;
+    height: 64px;
+    font-size: 3em;
+    -webkit-text-stroke: 2px black;
+    bottom: 0;
+}
+
+.editorArrangeHandle {
+    right: 0;
+    position: absolute;
+    min-width: 50px;
+    background-color: #000000;
+    vertical-align: middle;
+    z-index: 1;
+    height: 30px;
+    
 }

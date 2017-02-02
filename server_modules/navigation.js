@@ -4,7 +4,7 @@ module.exports = function(app) {
         res.send(JSON.stringify(main_navigation));
     });
 
-}
+};
 
 
 // Main Navigation (TEMP -> PUT ON DATASTORE)
@@ -37,7 +37,7 @@ var main_navigation = [
         new navItem('Contact Us', '#', 'submain', 'fa-phone-square', [])
         ]),
     new navItem('Join', '#', 'main', 'fa-users', []),
-    new navItem('Login', '#', 'main', 'fa-sign-in', []),
+    new navItem('Login', '/public/login', 'main', 'fa-sign-in', []),
 ];
 
 

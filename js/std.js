@@ -32,10 +32,10 @@ function init() { // Init Global Vars
             var nav_id = 'nav_menu_' + counter++;
 
             // Add nav list to parent
-            $(parent).prepend("<nav id='" + nav_id + "' class='" + parent_id + " b_dark' >");
+            $(parent).prepend("<nav id='" + nav_id + "' class='" + parent_id + " b_white c_dark' >");
 
             // Create new nav item list to the new nav list 
-            $('#' + nav_id).append("<ul class='font_med'>");
+            $('#' + nav_id).append("<ul class='font_med ulNavigation '>");
 
             // Create on click listener for the navigation item
             $(clicky).on('click', function() {
@@ -43,37 +43,19 @@ function init() { // Init Global Vars
                 // If its submenue is not open, open it, and close its neighbors
                 if ($('#' + nav_id)[0].classList.contains('navigation_list--active') == false) {
                     // Get neighbours, and close them
-                    //console.log( $('#' + nav_id).parent().children() );
                     
-                    $('.' + parent_id).each(function(index) {
+                    //console.log( '.' + parent_id.replace(' ','.') );
+                    var paren_class_list = parent_id;
+                    paren_class_list ='.' +  paren_class_list.replace(' ','.')
+                    console.log( paren_class_list);
+                    
+                    $(paren_class_list ).each(function(index) {
                        this.classList.remove('navigation_list--active');
                     });
                     //$('#' + nav_id).parent().add('navigation_list--active');
                     $('#' + nav_id)[0].classList. add('navigation_list--active');
                     
                     
-                    /*$("#navigation_holder").children().each(function(index, elm) {
-
-                        if ($(elm).hasClass("navigation_list--active")) {
-                            console.log(elm);
-                            //elm.removeClass("navigation_list--active");
-                        }
-                    });*/
-                    
-                    //console.log($("#navigation_holder").children());
-                    
-                    // Close neighbors, when list is oppened
-                    // !! TO DO
-                    //$(parent).each(function(index){ this.classList.remove('navigation_list--active'); });
-
-                    /*var elements = document.getElementsByClassName('submain');
-                    for(var k = 0; k < elements.length; k++){
-                        elements[k].style.display = 'none'; // Hide all elements.
-                    }
-                    */
-
-
-
 
                 }
                 else {
@@ -93,7 +75,7 @@ function init() { // Init Global Vars
 
                 if (list[x].submenu.length > 0) {
                     //console.log($('#' + nav_id + ' ul li a').last()[0]);
-                    populateNavigation($('#' + nav_id + ' ul li a').last()[0], parent, list[x].submenu, (counter++) * 100, parent_id + ' ' + nav_id);
+                    populateNavigation($('#' + nav_id + ' ul li a').last()[0],  parent , list[x].submenu, (counter++) * 100, parent_id + ' ' + nav_id);
                 }
 
             }
@@ -107,8 +89,8 @@ function init() { // Init Global Vars
     //$('.body_prime').initLayout({'style' : '50_50'}, null);
     //$('.body_prime').initLayout({'style' : '100_0'}, null);
     //$('.body_prime').initLayout({'style' : '30_30_30'}, null);
-    $('#test_layout_123').addText('AaBbCc', 'Content', {}, null);
-    $('#test_layout_123').addText('</br>...</br>', 'More Content', {}, null);
-    $('#test_layout_456').addText('AaBbCc', 'Content', {}, null);
-    $('#test_layout_456').addText('</br>...</br>', 'More Content', {}, null);
+    //$('#test_layout_123').addText('AaBbCc', 'Content', {}, null);
+    //$('#test_layout_123').addText('</br>...</br>', 'More Content', {}, null);
+   // $('#test_layout_456').addText('AaBbCc', 'Content', {}, null);
+    //$('#test_layout_456').addText('</br>...</br>', 'More Content', {}, null);
 }

@@ -28,7 +28,7 @@
             style = options.style; // Get input style from options
         }
         catch (err) {
-            console.warn("tryHard.js: error in parsing options")
+            console.warn("qLayout.js: error in parsing options")
         }
         // Select variable that corecponds to desired style
         if (style == '100_0') {
@@ -45,7 +45,7 @@
         }
         else {
             // Error if input style does not corespond with existing style
-            console.error("tryHard.js: invalid layot style");
+            console.error("qLayout.jquery.js: invalid layot style");
         }
         this.parent().addClass("container-fluid");
     
@@ -58,18 +58,19 @@
 
 
     // Appends a text widget in to the layout
-    $.fn.addText = function(text, heading, options, callback) {
+    $.fn.addText = function(heading , text, options, callback) {
         // Prefab template for text widget
-        var _text_widget = "<div class='text_widget'><h2>" + heading + "</h2><p>" + text + "</p></div>";
-        this.append(_text_widget);  // Append widget to layout
-
+        var _text_widget = "<div class='text_widget'><div class='text_widget_content'><h2 class='text_widget_title'>" + heading + "</h2><p class='text_widget_content'>" + text + "</p></div></div>";
+        $(this).append(_text_widget) // Append widget to layout
+        
         // If there is a callback, call it
         if (callback != null) {
             callback();
         }
-        return this;
+        return null;// Return the new element
     };
-
+    
+    
     //!! TO DO -> text_widget, image_widget, ulist_widget, olist_widget, events_widget (a specail oList)
 
 }(jQuery));

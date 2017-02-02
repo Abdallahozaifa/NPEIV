@@ -9,51 +9,54 @@
 
     <!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Font Awsome -->
-    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
     <!-- Style Sheets -->
-    <link rel='stylesheet' href='css/normalize.css' type='text/css' />
+    <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
     <link href='/css/page.css' rel='stylesheet'>
     <link href='/css/colors.css' rel='stylesheet'>
 
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/std.js'></script>
-    <script type='text/javascript' src='/js/tryHard.js'></script>
+    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+
+    <!-- jQueryUI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- CK Editor -->
+    <script src="/js/ckeditor/ckeditor.js"></script>
+
 </head>
 
 <body class='b_purple'>
     <!-- Header+Nav Bar -->
-    <nav id='main_header_bar' class='b_dark c_white noselect'>
+    <nav id='main_header_bar' class='b_white c_dark noselect'>
         <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
         </h1>
 
-        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars' >
+        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
             <div class='font_small'>Menu</div>
 
-         <!-- Donate Button -->
+            <!-- Donate Button -->
         </div>
         <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
             <div class='font_small'>Donate</div>
         </div>
-        
-         <!-- Search Bar -->
-         
-        <form class='main_header_item float_right font_big' >
-              <input type="text" name="search" placeholder="Search..">
+
+        <!-- Search Bar -->
+
+        <form class='main_header_item float_right font_big'>
+            <input class='searchBar' type="text" name="search" placeholder="Search...">
         </form>
-
-        
-
     </nav>
 
-        
+
 
 
     <div class='body_prime container-fluid'>
@@ -62,12 +65,26 @@
         <div id='navigation_holder'></div>
 
         <div class='row layout_row'>
+
+
+
             <!-- 100 layout -->
             <div class='layout col-sm-12 '>
                 <div class='layout_inner'>A : 100 layout
-                    
-                    <div class='text_widget'> <h2>This is a sample heading</h2> <p>This is a sample paragraph</p> </div>
-                    <img src='/img/NPEIV.jpg'/>
+                    <div class='text_widget'>
+                        <div class='text_widget_content'>
+                            <h2 class='text_widget_title'>This is a sample heading</h2>
+                            <p class='text_widget_content'>This is a sample paragraph</p>
+                        </div>
+                    </div>
+                    <div class='text_widget'>
+                        <div class='text_widget_content'>
+                            <h2 class='text_widget_title'>This is a sample heading</h2>
+                            <p class='text_widget_content'>This is a sample paragraph</p>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -91,7 +108,7 @@
                 <div class='layout_inner'>B : 70/30 layout</div>
             </div>
         </div>
-        
+
         <div class='row layout_row'>
             <!-- 70/30 layout -->
             <div class='layout col-sm-4 '>
@@ -111,6 +128,93 @@
 
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class='b_dark' id='editorBar'>
+        <script type="text/javascript">
+            /*global $*/
+            /*global CKEDITOR*/
+
+            //<div class='editorArrangeHandle  noselect '><h2 class='c_white fa fa-arrows-v'></h2></div>
+            $(document).ready(function() {
+
+                $('.uiBuilderElement').draggable({
+                    revert: true,
+                    revertDuration: 0
+                });
+
+                function editorInit() {
+                    $('.layout_inner').droppable({
+                        accept: ".uiBuilderElement",
+                        greedy: true,
+                        drop: function(event, ui) {
+                            if (ui.draggable.get(0).classList.contains('uiTextElement')) {
+                                $(this).addText('Title', "Content", null, editorInit);
+
+                            }
+                            else if (ui.draggable.get(0).classList.contains('ui100Layout')) {
+                                $(this).initLayout({
+                                    style: '100_0'
+                                }, editorInit);
+
+                            }
+                        }
+                    });
+
+                    $('.layout_inner').sortable({
+                        containment: ".body_prime",
+                        handle: ".editorArrangeHandle"
+                    });
+
+                    //$('.layout_inner').disableSelection();
+
+                    for (name in CKEDITOR.instances) {
+                        CKEDITOR.instances[name].destroy(true);
+                    }
+
+                    $('.text_widget').each(function() {
+                        if (!$(this).children().hasClass('editorArrangeHandle')) {
+                            $(this).prepend("<div class='editorArrangeHandle  noselect '><h2 class='c_white fa fa-arrows-v'></h2></div>");
+                        }
+
+                    });
+
+                    $('.text_widget_content').each(function() {
+                        $(this).attr('contenteditable', 'true');
+                        CKEDITOR.inline(this);
+                    });
+
+
+                }
+                editorInit();
+
+
+            });
+
+            function finalize() {
+                for (name in CKEDITOR.instances) {
+                    CKEDITOR.instances[name].destroy(true);
+                }
+                $('.text_widget_content').each(function() {
+                    $(this).removeAttr('contenteditable');
+
+                });
+                $('.layout_inner').sortable("disable");
+
+                $('.editorArrangeHandle').each(function() {
+                    $(this).remove();
+
+                });
+
+            }
+        </script>
+        <div class='c_white noselect uiBuilderElement uiTextElement' style='display:inline;'>Text</div>
+        <div class='c_white noselect uiBuilderElement ui100Layout' style='display:inline;'>100</div>
+        <button type="button" class='c_dark' onClick='finalize()' style='display:inline;'>Fin</div>
+    </div>
 
 </body>
 

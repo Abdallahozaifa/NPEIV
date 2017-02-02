@@ -3,8 +3,13 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const bodyParser = require("body-parser");
+var multer = require('multer'); 
 
-var DataStoreGate = require('./server_modules/DataStoreGate.js');
+var DataStoreGate = require('./server_modules/DataStoreGate.js')();
+var authentication = require('./server_modules/authentication.js')(app, DataStoreGate);
+var Email = require('./server_modules/Email.js');
+
+//Email.sendMail();
 
 /* SERVER */
 const root = __dirname;
@@ -58,4 +63,4 @@ const server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
 
 
 
-require('./server_modules/navigation.js')(app); // Start dynamic navigation
+require('./server_modules/navigation.js')(app); // Start dynamic navigation 
