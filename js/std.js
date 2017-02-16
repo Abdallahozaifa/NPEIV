@@ -47,7 +47,7 @@ function init() { // Init Global Vars
                     //console.log( '.' + parent_id.replace(' ','.') );
                     var paren_class_list = parent_id;
                     paren_class_list ='.' +  paren_class_list.replace(' ','.')
-                    console.log( paren_class_list);
+                    //console.log( paren_class_list);
                     
                     $(paren_class_list ).each(function(index) {
                        this.classList.remove('navigation_list--active');
@@ -71,7 +71,7 @@ function init() { // Init Global Vars
 
             // Submenue generation
             for (var x in list) {
-                $('#' + nav_id + ' ul').append("<li class='navigation_item '><a href='" + list[x].link + "' class='navigation_link fa " + list[x].icon + " c_white'> <h5 class='font_small font_tight'>" + list[x].name + "</h5></a></li>");
+                $('#' + nav_id + ' ul').append("<li class='navigation_item '><a href='" + list[x].link + "' class='navigation_link fa " + list[x].icon + " c_dark'> <h5 class='font_small font_tight'>" + list[x].name + "</h5></a></li>");
 
                 if (list[x].submenu.length > 0) {
                     //console.log($('#' + nav_id + ' ul li a').last()[0]);

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NPEIV</title>
+    <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
+    <!-- Disables Mobile Zoom -->
+    <meta name='viewport' content='width=device-width'>
+
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
+
+    <!-- Bootstrap -->
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Font Awsome -->
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <!-- Style Sheets -->
+    <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
+    <link href='/css/page.css' rel='stylesheet'>
+    <link href='/css/colors.css' rel='stylesheet'>
+
+    <!-- JavaScript -->
+    <script type='text/javascript' src='/js/std.js'></script>
+    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+
+    <!-- jQueryUI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- CK Editor -->
+    <script src="/js/ckeditor/ckeditor.js"></script>
+    
+    <script type="text/javascript">
+        // User Page Script
+        $(document).ready(function() {
+            try {
+                var user =  sessionStorage.getItem("username");
+                
+                $('#UsernameOut').text("Hello " + user);
+            } catch (e) {
+                $('#UsernameOut').text("Your session has expired, please login again");
+            }
+            
+        });
+        
+        
+    </script>
+
+</head>
+
+<body class='b_purple'>
+    <!-- Header+Nav Bar -->
+    <nav id='main_header_bar' class='b_white c_dark noselect'>
+        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
+        </h1>
+
+        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
+            <div class='font_small'>Menu</div>
+
+            <!-- Donate Button -->
+        </div>
+        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+            <div class='font_small'>Donate</div>
+        </div>
+
+        <!-- Search Bar -->
+
+        <form class='main_header_item float_right font_big'>
+            <input class='searchBar' type="text" name="search" placeholder="Search...">
+        </form>
+    </nav>
+
+
+
+
+    <div class='body_prime container-fluid'>
+
+        <!-- Nav Items Are Populated Here -->
+        <div id='navigation_holder'></div>
+
+        <div class='row layout_row'>
+
+
+
+            <!-- 100 layout -->
+            <div class='layout col-sm-12 '>
+                <div class='layout_inner'>
+                    <h2 id='UsernameOut'></h2>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+        
+</body>
+
+</html>

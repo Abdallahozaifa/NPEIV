@@ -3,21 +3,31 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const bodyParser = require("body-parser");
-var multer = require('multer'); 
 
-var DataStoreGate = require('./server_modules/DataStoreGate.js')();
-var authentication = require('./server_modules/authentication.js')(app, DataStoreGate);
-var Email = require('./server_modules/Email.js');
+// Setting up app
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-//Email.sendMail();
+// Custom Server Modules
+var DataStoreGate = require('./server_modules/DataStoreGate.js')(); 
 
-/* SERVER */
+var Email = require('./server_modules/Email.js'); // TODO
+
+var Navigation = require('./server_modules/navigation.js')(app, DataStoreGate); // Start dynamic navigation module
+
+var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate); // Module for user login and user authentication
+
+var PageMgmt  = require('./server_modules/PageMgmt.js')( app, fs, Navigation, Authentication); // Module for page management
+
+var UserMgmt  = require('./server_modules/UserMgmt.js')( app, Authentication, DataStoreGate); // Module for user management
+
+  
+/**
+ * SERVER 
+ */
 const root = __dirname;
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
+
 
 /* Serving static files in express */
 app.use('/css', express.static('css'));
@@ -51,6 +61,15 @@ app.get('/member/*', function(req, res) {
     });
 });
 
+/*GET ADMIN PAGE*/
+app.get('/admin/*', function(req, res) {
+    res.sendFile(root + '/html/' + req.path + '.html', function(err) {
+        if (err) {
+            res.status(err.status).end();
+        }
+    });
+});
+
 /* Listens on the Server Port */
 const server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
     if (process.env.PORT) {
@@ -63,4 +82,3 @@ const server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
 
 
 
-require('./server_modules/navigation.js')(app); // Start dynamic navigation 

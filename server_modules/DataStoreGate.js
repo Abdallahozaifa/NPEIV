@@ -1,153 +1,173 @@
 module.exports = function() {
-  var datastore = require('@google-cloud/datastore');
+   var datastore = require('@google-cloud/datastore');
 
-  // Instantiate a datastore client
-  var datastoreClient = datastore({
-    projectId: 'npeiv-webapp',
-    keyFilename: __dirname + '/keyfile.json'
-  });
+   // Instantiate a datastore client
+   var datastoreClient = datastore({
+      projectId: 'npeiv-webapp',
+      keyFilename: __dirname + '/keyfile.json'
+   });
 
-  /**
-   * Adds an object to the datastore
-   * @param {object} obj - any object 
-   * @param {String} kind - the type of data being added to the datastore
-   * @param {String} primKey - the value of the data being added
-   * @param {function} callback - callback function
-   * @return {function} callback - callback function
-   */
-  this.addObjToStore = function(obj, kind, primKey, callback) {
-    this.getObjFromStore(kind, primKey, function(result) {
+   /**
+    * Adds an object to the datastore
+    * @param {object} obj - any object 
+    * @param {String} kind - the type of data being added to the datastore
+    * @param {String} primKey - the value of the data being added
+    * @param {function} callback (err, data) - callback function
+    * @return {function} callback(err, data) - callback function
+    */
+   this.addObjToStore = function(obj, kind, primKey, callback) {
+      this.getObjFromStore(kind, primKey, function(err, result) {
 
-      // If the object is not found in the database already
-      if (result == undefined) {
-        var objKey = datastoreClient.key([kind, primKey]);
-        datastoreClient.save({
-          key: objKey,
-          data: obj
-        }, function(err) {
-          if (err) {
+         // If the object is not found in the database already
+         if (result == undefined) {
+            var objKey = datastoreClient.key([kind, primKey]);
+
+            datastoreClient.save({
+               key: objKey,
+               data: obj
+            }, function(err) {
+               if (err) {
+                  return callback(err); // Send error
+               }
+               else {
+                  return callback(false, obj); // No error, return object
+               }
+               console.log(kind + ": " + primKey + ' created successfully.');
+            });
+         }
+
+         // If the object is found in the database 
+         else {
+            console.log(kind + ": " + primKey + ' already exists.');
+            return callback('Entity already exists');
+         }
+      });
+   };
+
+   /**
+    * Removes an object from the datastore
+    * @param {String} kind - the type of data being added to the datastore
+    * @param {String} primKey - the value of the data being added
+    * @param {function} callback (err)- callback function
+    * @return {function} callback (err) - callback function
+    */
+   this.deleteObjFromStore = function(kind, primKey, callback) {
+      this.getObjFromStore(kind, primKey, function(err, result) {
+         if (err) {
+            // If the object is not found in the database or there was an error
             return callback(err);
-          } else {
-            return callback(false);
-          }
-          console.log(kind + ": " + primKey + ' created successfully.');
-        });
-      }
+         }
+         else {
+            // If the object is found in database
+            var objKey = datastoreClient.key([kind, primKey]);
 
-      // If the object is found in the database 
-      else {
-        console.log(kind + ": " + primKey + ' already exists.');
-        return callback(true);
-      }
-    });
-  };
+            datastoreClient.delete(objKey, function(err) {
+               if (err) {
+                  return callback(err);
+               }
+               //console.log(objKey);
+               console.log(kind + ": " + primKey + ' deleted successfully.');
+               return callback(false);
+            });
 
-  /**
-   * Removes an object from the datastore
-   * @param {String} kind - the type of data being added to the datastore
-   * @param {String} primKey - the value of the data being added
-   * @param {function} callback - callback function
-   * @return {function} callback - callback function
-   */
-  this.deleteObjFromStore = function(kind, primKey, callback) {
-    this.getObjFromStore(kind, primKey, function(result) {
+         }
+      });
+   };
 
-      // If the object is found in database
-      if (result != undefined) {
-        var objKey = datastoreClient.key([kind, primKey]);
+   /**
+    * Gets an object from the datastore
+    * @param {String} kind - the type of data being added to the datastore
+    * @param {String} primKey - the value of the data being added
+    * @param {function} callback (error, data)- callback function
+    * @return {function} callback(error, data) - callback function
+    */
+   this.getObjFromStore = function(kind, primKey, callback) {
+      var objKey = datastoreClient.key([kind, primKey]);
 
-        datastoreClient.delete(objKey, function(err) {
-          if (err) {
-            return callback(err);
-          }
-          //console.log(objKey);
-          console.log(kind + ": " + primKey + ' deleted successfully.');
-          return callback(null);
-        });
-      }
+      datastoreClient.get(objKey, function(err, entity) {
+         if (entity != null) {
+            // If the object is found in the datastore
+            return callback(false, entity); // Callback with entity, and a null error message
+         } else {
+            // If the object was not found
+            // console.log(kind + ": " + primKey + ' does not exist.');
+            return callback("Error: entity not found-> " + kind + " : " + primKey); // Callback with error message
+         }
+          
+      });
+   };
 
-      // If the object is not found in the database  
-      else {
-        console.log(kind + ": " + primKey + ' does not exist.');
-        return callback(null);
-      }
-    });
-  };
+   /* !!!! TODO NEEDS REWORK!!!!*/
+   /**
+    * Updates an object from the datastore
+    * @param {String} kind - the type of data being added to the datastore
+    * @param {String} primKey - the value of the data being added
+    * @param {function} callback (error, data) - callback function
+    * @return {function} callback (error, data) - callback function
+    */
+   this.updateObjFromStore = function(kind, primKey, obj, callback) {
+      this.getObjFromStore(kind, primKey, function(err, result) {
 
-  /**
-   * Gets an object from the datastore
-   * @param {String} kind - the type of data being added to the datastore
-   * @param {String} primKey - the value of the data being added
-   * @param {function} callback - callback function
-   * @return {function} callback - callback function
-   */
-  this.getObjFromStore = function(kind, primKey, callback) {
-    var objKey = datastoreClient.key([kind, primKey]);
+         if (err) {
+            console.log(kind + ": " + primKey + ' does not exist.');
+            return callback("Entity does not exist"); // If there is no entity, pass error and no data
+         }
+         else {
+            // If there was no error in retrieving the object
+            var objKey = datastoreClient.key([kind, primKey]);
+            datastoreClient.save({
+               key: objKey,
+               data: obj
+            }, function(err) {
+               if (err) {
+                  return callback(err); // If there was an error, pass error and no data
+               }
+               else {
+                  console.log(kind + ": " + primKey + ' created successfully.');
+                  return callback(false, obj);
+               }
+            });
+         }
+      });
+   };
 
-    datastoreClient.get(objKey, function(err, entity) {
-      return callback(err || entity);
-    });
-  };
+   /**
+    * Gets all objects with a certain type from the datastore
+    * @param {String} kind - the type of data being added to the datastore
+    * @param {String} token - gives the ability to request additional information
+    * @param {function} callback(err, data) - callback function
+    */
+   this.getAllObjectsType = function(kind, token, callback) {
+      var q = datastoreClient.createQuery([kind]);
+      //.start(token); // amt
 
-  /* !!!! TODO NEEDS REWORK!!!!*/
-  /**
-   * Updates an object from the datastore
-   * @param {String} kind - the type of data being added to the datastore
-   * @param {String} primKey - the value of the data being added
-   * @param {function} callback - callback function
-   * @return {function} callback - callback function
-   */
-  this.updateObjFromStore = function(kind, primKey, obj, callback) {
-    this.getObjFromStore(kind, primKey, function(result) {
+      datastoreClient.runQuery(q, (err, entities, nextQuery) => {
+         // Callback (err,data)
+         if (err) {
+            return callback(err, null); // Callback with error
+         }
+         else {
+            const hasMore = nextQuery.moreResults !== datastoreClient.NO_MORE_RESULTS ? nextQuery.endCursor : false;
+            return callback(null, entities); // Callback with data
+         }
 
-      // If the object is found in the database
-      if (result != undefined) {
+      });
+   };
 
-        var objKey = datastoreClient.key([kind, primKey]);
-        datastoreClient.save({
-          key: objKey,
-          data: obj
-        }, function(err) {
-          if (err) {
-            return callback(err);
-          }
+   exports.addObjToStore = this.addObjToStore;
+   exports.deleteObjFromStore = this.deleteObjFromStore;
+   exports.getObjFromStore = this.getObjFromStore;
+   exports.updateObjFromStore = this.updateObjFromStore;
+   exports.getAllObjectsType = this.getAllObjectsType;
 
-          console.log(kind + ": " + primKey + ' created successfully.');
-        });
-
-        // var objKey = datastoreClient.key([kind, primKey]);
-        // datastoreClient.get(objKey, function(err, entity) {
-        //   return callback(err || entity);
-        // });
-      }
-
-      // If object is not found in the database
-      else {
-        console.log(kind + ": " + primKey + ' does not exist.');
-        return callback(null);
-      }
-    });
-  };
-
-  exports.addObjToStore = this.addObjToStore;
-  exports.deleteObjFromStore = this.deleteObjFromStore;
-  exports.getObjFromStore = this.getObjFromStore;
-  exports.updateObjFromStore = this.updateObjFromStore;
-
-  /*
+   /*
   DATABASE EXAMPLE!!!
-    
-  DataStoreGate.addObjToStore({fName: "Hozaifa", lName: "Abdalla", userName: "abdallahozaifa", password: "hozaifa"}, "User", "Hozaifa Abdalla", function(err){
-    console.log(err); 
-  });
-    
-  DataStoreGate.deleteObjFromStore("User", "Hozaifa Abdalla", function(err){
-    console.log(err);
-  });
-    
-  DataStoreGate.getObjFromStore("User", "Hozaifa Abdalla", function(result){
-    console.log("Object retrieved from Store: " + result); 
-  });
+  
+  DataStoreGate.getAllObjectsType("User", "", function(err, users, hasMore){
+    users.forEach(function(user){
+        console.log("Object retrieved from Store: " + JSON.stringify(user)); 
+    });
+});
   */
-  return this;
+   return this;
 };

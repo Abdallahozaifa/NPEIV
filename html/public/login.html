@@ -208,8 +208,9 @@
         
         .main_head {
             text-align: center;
-            font-size: 3vw;
-            color: white;
+            font-size: 36px;
+            color: black;
+            font-weight: bold;
         }
     </style>
 
@@ -223,9 +224,10 @@
 </head>
 
 <body class="b_purple">
-
+    
+    
     <!-- Header+Nav Bar -->
-    <nav id='main_header_bar' class='b_dark c_white noselect'>
+    <nav id='main_header_bar' class='b_white c_dark  noselect'>
         <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
         </h1>
 
@@ -252,13 +254,13 @@
         <div id='navigation_holder'></div>
         
         <div>
-            <h1 class="main_head">Login</h1>
+            <h1 class="main_head ">Login</h1>
         </div>
 
         <div class='row  b_white'>
             <div class="col-sm-6">
 
-                <div class="container">
+                <form class="container " action="#">
                     
                     <br />
 
@@ -271,7 +273,7 @@
                     <br />
 
                     <i class="fa fa-envelope-o fa-fw" style="font-size:4vh" aria-hidden="true"></i>
-                    <input type="text" placeholder="Enter Email" id="user_name" name="uname" style="width: 75%" class='loginInput' required>
+                    <input type="text" placeholder="Enter Username" id="user_name" name="uname" style="width: 75%" class='loginInput' required>
                     <br />
                     <br />
 
@@ -283,7 +285,7 @@
 
                     <button type="button" class="loginformbutton cancelbtn" onclick="location.href='/'">Cancel</button>
 
-                </div>
+                </form>
 
                 <br />
 
@@ -316,16 +318,19 @@
                     <br />
                     <br />
 
-                    <button class="loginformbutton loginBtn loginBtn--google "> Login with Google </button>
+                    <!--<button class="loginformbutton loginBtn loginBtn google "data-onsuccess="onSignIn"> Login with Google </button> -->
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <br />
                     <br />
-                    <button class="loginformbutton loginBtn loginBtn--facebook "> Login with Facebook </button>
+                    
                     <br />
                 </div>
             </div>
         </div>
 
     </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="55924514143-n0kt131c6j39u29fljs67p0h5t1qeqdo.apps.googleusercontent.com">
     <script type="text/javascript" src="../../js/login.js"></script>
 </body>
 

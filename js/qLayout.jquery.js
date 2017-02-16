@@ -54,13 +54,11 @@
             callback();
         }
     };
-
-
-
+    
     // Appends a text widget in to the layout
-    $.fn.addText = function(heading , text, options, callback) {
+    $.fn.addText = function(callback) {
         // Prefab template for text widget
-        var _text_widget = "<div class='text_widget'><div class='text_widget_content'><h2 class='text_widget_title'>" + heading + "</h2><p class='text_widget_content'>" + text + "</p></div></div>";
+        var _text_widget = "<div class='text_widget'><div class='text_widget_content'><p class='text_widget_content'>Text</p></div></div>";
         $(this).append(_text_widget) // Append widget to layout
         
         // If there is a callback, call it
@@ -70,6 +68,11 @@
         return null;// Return the new element
     };
     
+    
+    // Appends a text widget in to the layout
+    $.fn.startPageEditor = function() {
+        
+    };
     
     //!! TO DO -> text_widget, image_widget, ulist_widget, olist_widget, events_widget (a specail oList)
 

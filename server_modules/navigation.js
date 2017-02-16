@@ -1,5 +1,11 @@
 // Dynamic Navigation
-module.exports = function(app) {
+module.exports = function(app, DatastoreGate) {
+    
+    /** POST - for obtaining the navigation object from the datastore
+     * Paramaters: (all mandaotry unless otherwise)
+     *  Response Structure: (JSON)
+     *      Navicatoin object
+     */
     app.post('/fetch/navigation/main', function(req, res) {
         res.send(JSON.stringify(main_navigation));
     });
@@ -7,7 +13,8 @@ module.exports = function(app) {
 };
 
 
-// Main Navigation (TEMP -> PUT ON DATASTORE)
+// Main Navigation (TODO -> PUT ON DATASTORE)
+/* OLD nav object
 var main_navigation = [
     new navItem('Home', '/', 'main', 'fa-home', []),
     new navItem('Help', '#', 'main', 'fa-heart', []),
@@ -38,6 +45,13 @@ var main_navigation = [
         ]),
     new navItem('Join', '#', 'main', 'fa-users', []),
     new navItem('Login', '/public/login', 'main', 'fa-sign-in', []),
+];*/
+
+var main_navigation = [
+    new navItem('Home', '/', 'main', 'fa-home', []),
+    new navItem('Login', '/public/login', 'main', 'fa-sign-in', []),
+    new navItem('User Mgmt', '/admin/userMgmt', 'main', 'fa-home', []),
+    new navItem('Page Mgmt', '/admin/pageMgmt', 'main', 'fa-home', [])
 ];
 
 
