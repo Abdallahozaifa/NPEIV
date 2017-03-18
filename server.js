@@ -3,38 +3,42 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const bodyParser = require("body-parser");
+const randomString = require("randomstring"); // Random string genorator for temporory key genoration
+const crypto = require('crypto');
 
-// Setting up app
+
+// Setting up app, to user body parser for POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Custom Server Modules
-var DataStoreGate = require('./server_modules/DataStoreGate.js')(); 
+// Server consts
+const root = __dirname;
 
-var Email = require('./server_modules/Email.js'); // TODO
+// Custom Server Modules
+var DataStoreGate = require('./server_modules/DataStoreGate.js')(); // The comm. port to the datastore
+
+var Email = require('./server_modules/Email.js')(); // TODO
 
 var Navigation = require('./server_modules/navigation.js')(app, DataStoreGate); // Start dynamic navigation module
 
-var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate); // Module for user login and user authentication
+var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate, crypto, randomString); // Module for user login and user authentication
 
-var PageMgmt  = require('./server_modules/PageMgmt.js')( app, fs, Navigation, Authentication); // Module for page management
+var PageMgmt  = require('./server_modules/PageMgmt.js')( app, fs, Navigation, Authentication, DataStoreGate); // Module for page management
 
-var UserMgmt  = require('./server_modules/UserMgmt.js')( app, Authentication, DataStoreGate); // Module for user management
+var UserMgmt  = require('./server_modules/UserMgmt.js')( randomString, app, Authentication, DataStoreGate, Email); // Module for user management
 
   
 /**
- * SERVER 
- */
-const root = __dirname;
-
-
-
-/* Serving static files in express */
+ * --- THE  SERVER ---
+ **/
+ 
+ 
+/* Serving static files using express */
 app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/img', express.static('img'));
 
-/*GET HOMEPAGE*/
+/* GET HOMEPAGE */
 app.get('/', function(req, res) {
     res.sendFile(root + '/index.html', function(err) {
         if (err) {
@@ -43,7 +47,7 @@ app.get('/', function(req, res) {
     });
 });
 
-/*GET PUBLIC PAGE*/
+/* GET PUBLIC PAGES */
 app.get('/public/*', function(req, res) {
     res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {
@@ -52,7 +56,7 @@ app.get('/public/*', function(req, res) {
     });
 });
 
-/*GET MEMBER PAGE*/
+/* GET MEMBER PAGES */
 app.get('/member/*', function(req, res) {
     res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {
@@ -61,7 +65,7 @@ app.get('/member/*', function(req, res) {
     });
 });
 
-/*GET ADMIN PAGE*/
+/* GET ADMIN PAGES */
 app.get('/admin/*', function(req, res) {
     res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {

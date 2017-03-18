@@ -205,7 +205,6 @@
             font-size: 25px;
         }
         
-        
         .main_head {
             text-align: center;
             font-size: 36px;
@@ -213,6 +212,119 @@
             font-weight: bold;
         }
     </style>
+
+
+
+    <style  type="text/css">
+        /* Full-width input fields */
+        
+        .input1[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        /* Set a style for all buttons */
+        
+        .button1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        /* Position the close button */
+        
+        .container1 {
+            padding: 16px;
+        }
+        
+        /* The Modal (background) */
+        
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        /* Modal Content/Box */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 25%;
+            /* Could be more or less, depending on screen size */
+        }
+        /* The Close Button (x) */
+        
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+        /* Add Zoom Animation */
+        
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+        
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+        
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+            to {
+                transform: scale(1)
+            }
+        }
+       
+    </style>
+
+
+
+
+
+
+
 
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/std.js'></script>
@@ -224,8 +336,8 @@
 </head>
 
 <body class="b_purple">
-    
-    
+
+
     <!-- Header+Nav Bar -->
     <nav id='main_header_bar' class='b_white c_dark  noselect'>
         <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
@@ -252,7 +364,7 @@
 
         <!-- Nav Items Are Populated Here -->
         <div id='navigation_holder'></div>
-        
+
         <div>
             <h1 class="main_head ">Login</h1>
         </div>
@@ -260,8 +372,8 @@
         <div class='row  b_white'>
             <div class="col-sm-6">
 
-                <form class="container " action="#">
-                    
+                <form class="container " action="#" onsubmit="return false;">
+
                     <br />
 
                     <i class="fa fa-user-circle-o c_purple" style="font-size:18vh" aria-hidden="true"></i>
@@ -291,8 +403,7 @@
 
                 <div class="container1" style="background-color:#f1f1f1" align="left">
                     <input type="checkbox" checked="checked" align="left"> Remember me </input>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-
+                    <span class="psw">Forgot <a onclick="document.getElementById('id01').style.display='block'">password?</a></span>
                 </div>
 
 
@@ -322,7 +433,7 @@
                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <br />
                     <br />
-                    
+
                     <br />
                 </div>
             </div>
@@ -332,6 +443,60 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="55924514143-n0kt131c6j39u29fljs67p0h5t1qeqdo.apps.googleusercontent.com">
     <script type="text/javascript" src="../../js/login.js"></script>
+
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+            </div>
+
+            <div class="container1">
+                <center><i class="fa fa-question-circle-o" style="font-size:13vh" aria-hidden="true"></i></center>
+                <br />
+
+                <p style="font-size:2vh">Please enter you username address to your account. If the username is part of an account, 
+                an Email will be sent to this account with a new password for you to login. Once you are in, change your password for you to remember</p>
+                <br />
+
+                <label class="font_med"><b>Username:</b></label>
+                <input class="input1" id="user_name1" type="text" name="text" required>
+
+                <button class="button1" id='frgpwd' type="submit">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#frgpwd').click(function() {
+                $.post("/post/user/resetPassword?username=" + $('#user_name1').val(), function(data) {
+                    // TODO
+
+                    console.log(data.Result + data.Message); // Display login failure
+
+
+                });
+            });
+
+        });
+    </script>
+
 </body>
 
 </html>

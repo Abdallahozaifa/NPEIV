@@ -74,7 +74,12 @@
         
     };
     
-    //!! TO DO -> text_widget, image_widget, ulist_widget, olist_widget, events_widget (a specail oList)
+    // Appends a text widget in to the layout
+    $.fn.finalizePageEditor = function() {
+        
+    };
+    
+    //!! TODO -> vents_widget (a specail oList)
 
 }(jQuery));
 

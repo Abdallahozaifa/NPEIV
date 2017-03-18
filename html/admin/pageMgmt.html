@@ -29,11 +29,11 @@
     <!-- jQueryUI -->
     <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <link href="/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    
+
     <!-- jTable -->
     <script src="/js/jtable.2.4.0/jquery.jtable.min.js"></script>
     <link href="/js/jtable.2.4.0/themes/metro/purple/jtable.min.css" rel="stylesheet" type="text/css" />
-    
+
 
 </head>
 
@@ -60,98 +60,135 @@
     </nav>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#pageTable').jtable({
-                title: 'NPEIV Users',
-                actions: {
-                    listAction:     'TODO/post/userMgmt/getAllUsers?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    createAction:   'TODO /post/pageMgmt/newPage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    updateAction:   'TODO /post/pageMgmt/SavePage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    deleteAction:   'TODO /post/userMgmt/deletePage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid')
-                },
-                fields: {
-                    name: {
-                        key: true,
-                        title: "Page Name",
-                        width: '20%',
-                        create: true,
-                        edit: true
-                    },
-                    title: {
-                        title: "Page Title",
-                        width: '20%'
-                    },
-                    group: {
-                        title: "Group/Subgroup ID",
-                        width: '20%',
-                    }
-                }
+        var currSecNums = 0;
+
+        function buildNavObject() {
+
+        }
+
+        function postNavObject() {
+            // POST NAV OBJECT TO SERVER
+        }
+
+        var addPage = function(parent_obj, name) {
+
+        };
+
+        var deletePage = function() {
+
+        }
+
+        var deletePage = function() {
+
+        }
+
+        var addPageGroup = function(accordElm, currSecNums, paragraph) {
+            accordElm.append("<h2 class='pageGroupName'>Section " + ++currSecNums + "</h2>");
+            accordElm.append("<div class='pageGroupElem'> <p>" + paragraph + "</p> </div>");
+        };
+
+        var createAccordian = function(accordElm) {
+            addPageGroup(accordElm, currSecNums, "Hello there, this is an accordion");
+        };
+
+        $(document).ready(function() {
+            createAccordian($(".accordion"));
+            $(".accordion").accordion({
+                collapsible: true
             });
-        
         });
-        
-        $(document).ready(function(){
-            $('#navigationTable').jtable({
-                title: 'NPEIV Users',
-                actions: {
-                    listAction:     'TODO /post/userMgmt/getAllUsers?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    createAction:   'TODO /post/pageMgmt/newPage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    updateAction:   'TODO /post/pageMgmt/SavePage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
-                    deleteAction:   'TODO /post/userMgmt/deletePage?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid')
-                },
-                fields: {
-                    id: {
-                        key: true,
-                        title: "Group ID",
-                        width: '10%',
-                    },
-                    name: {
-                        title: "Group Name",
-                        width: '20%'
-                    },
-                    parent: {
-                        title: "Parent Group ID",
-                        width: '20%',
-                    }
-                }
-            });
-        
-        });
-        
-        
     </script>
 
     <div class='body_prime container-fluid'>
 
         <!-- Nav Items Are Populated Here -->
         <div id='navigation_holder'></div>
-        
+
         <div class="row layout_row">
             <!-- 100 layout -->
             <div class="layout col-sm-12 ">
                 <div class="layout_inner">
                     <h2>Page Management </h2>
+
+                    <!-- build nav here -->
+                    <ul class="accordion">
+                        <li>
+                            <a class="toggle" href="javascript:void(0);">Item 1</a>
+                            <ul class="inner">
+                                <li>Option 1</li>
+                                <li>Option 2</li>
+                                <li>Option 3</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="toggle" href="javascript:void(0);">Item 2</a>
+                            <ul class="inner">
+                                <li>Option 1</li>
+                                <li>Option 2</li>
+                                <li>Option 3</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="toggle" href="javascript:void(0);">Item 3</a>
+                            <ul class="inner">
+                                <li>
+                                    <a href="#" class="toggle">Open Inner</a>
+                                    <div class="inner">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus placerat fringilla. Duis a elit et dolor laoreet volutpat. Aliquam ultrices mauris id mattis imperdiet. Aenean cursus ultrices justo et varius. Suspendisse aliquam orci id dui dapibus
+                                            blandit. In hac habitasse platea dictumst. Sed risus velit, pellentesque eu enim ac, ultricies pretium felis.
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="toggle">Open Inner #2</a>
+                                    <div class="inner">
+                                        <p>
+                                            Children will automatically close upon closing its parent.
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>Option 3</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="toggle" href="javascript:void(0);">Item 4</a>
+                            <ul class="inner">
+                                <li>
+                                    <a href="#" class="toggle">Technically any number of nested elements</a>
+                                    <ul class="inner">
+                                        <li>
+                                            <a href="#" class="toggle">Another nested element</a>
+                                            <div class="inner">
+                                                <p>
+                                                    As long as the inner element has inner as one of its classes then it will be toggled.
+                                                </p>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus placerat fringilla. Duis a elit et dolor laoreet volutpat. Aliquam ultrices mauris id mattis imperdiet. Aenean cursus ultrices justo et varius. Suspendisse aliquam orci id dui dapibus
+                                                    blandit. In hac habitasse platea dictumst. Sed risus velit, pellentesque eu enim ac, ultricies pretium felis.
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>Option 2</li>
+
+                                <li>Option 3</li>
+                            </ul>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>
-        
-        <div class="row layout_row" style="">
-            <!-- 50/50 layout -->
-            <div class="layout col-sm-6">
-                <div class="layout_inner">
-                    <h2>Navigation</h2>
-                    <div id="navigationTable"></div>
-                </div>
-            </div>
-            <div class="layout col-sm-6">
-                <div class="layout_inner">
-                    <h2>Pages</h2>
-                    <div id="pageTable"></div>
-                </div>
-            </div>
-        </div>
-        
-        
+
+
 
 
     </div>

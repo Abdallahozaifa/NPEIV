@@ -1,15 +1,85 @@
+var NavigationObjects = require("./DataObjects/NavigationObject.js"); // Refrence for navigation objects
+
 // Dynamic Navigation
 module.exports = function(app, DatastoreGate) {
-    
+
     /** POST - for obtaining the navigation object from the datastore
      * Paramaters: (all mandaotry unless otherwise)
      *  Response Structure: (JSON)
-     *      Navicatoin object
+     *  Navicatoin object
      */
     app.post('/fetch/navigation/main', function(req, res) {
         res.send(JSON.stringify(main_navigation));
     });
 
+    this.addPage = function(name, parent_string, callback) {
+        // Get nav obj from datastore
+        getNavObjFromDatastore(function(err, data) {
+            // Find parent
+            for (var i = 0; i < data.children.length; i++) {
+                
+            }
+            
+            // Add page to nav
+            
+            
+            
+            // callback(err, data)
+        });
+
+        
+    }
+
+    this.deletePage = function(name, callback) {
+        // Get nav obj from datastore
+
+        // Find and delete page from nav
+
+        // callback(err, data)
+    }
+
+    this.addPageGroup = function(name, parent, callback) {
+        // Get nav obj from datastore
+
+        // Add page group to nav
+
+        // callback(err, data)
+    }
+
+    this.deletePageGroup = function(name, callback) {
+        // Get nav obj from datastore
+
+        // Find and delte page group in nav - it has to be empty to delete
+
+        // callback(err, data)
+    }
+
+    this.getAllPages = function(callback) {
+        // Read all in '__dirname/html/Editables/' dir (excluding backup)
+    }
+
+    function getNavObjFromDatastore(callback) {
+        DatastoreGate.getObjFromStore("NAV", "NAV", callback);
+    }
+
+    /**
+     * 
+     */
+    function putNavObjToDatastor(obj, callback) {
+        // Save new nav object
+        DatastoreGate.updateObjFromStore("NAV", "NAV", obj, function(err, data) {
+            if (!err) {
+                // If no error from datastore
+                callback(false);
+            }
+            else {
+                // If error from datastore
+                callback(err);
+            }
+        });
+    }
+
+    return this;
 };
 
 

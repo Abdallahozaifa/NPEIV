@@ -49,7 +49,7 @@
         }
         
         .top_pg {
-            font-size: 2vw;
+            font-size: 1.75vw;
             text-align: left;
         }
         
@@ -90,6 +90,11 @@
             left: 0;
             width: 34px;
             height: 100%;
+        }
+        
+        .container1{
+            width:100%;
+            
         }
         
         .loginBtnr:focus {
@@ -175,7 +180,7 @@
             <h1 class="main_head">Register Form</h1>
         </div>
 
-        <div class="container" align="center">
+        <div class="container1" align="center">
 
             <div id="css-table">
 
@@ -188,6 +193,10 @@
 
                         <div  class="top_pg"><u>Please fill out all fields below:</u></div>
                         <br />
+                        
+                        <div class="label1">*Prefix: </div>
+                        <input class="inputbox" type='text' name='Prefix' id='Prefix' maxlength="50" required />
+                        <br />
 
                         <div  class="label1">*First Name: </div>
                         <input class="inputbox" type='text' name='name' id='first_name' maxlength="50" required />
@@ -196,19 +205,22 @@
                         <div class="label1">*Last Name: </div>
                         <input class="inputbox" type='text' name='name' id='last_name' maxlength="50" required />
                         <br />
-
+                        
+                        <div class="label1">*Title: </div>
+                        <input class="inputbox" type='text' name='Title' id='Title' maxlength="50" required />
+                        <br />
+            
                         <div class="label1">*Email Address:</div>
                         <input class="inputbox" type='email' name='email' id='email' maxlength="50" required/>
                         <br />
 
                         <div class="label1">*Password:</div>
-                        <input class="inputbox" type='email' name='email' id='psw1' maxlength="50" required/>
+                        <input class="inputbox" type='password' id='psw1' maxlength="50" required/>
                         <br />
 
                         <div class="label1">*Confirm Password: </div>
                         <input class="inputbox" type='password' id='psw2' maxlength="50" required/>
 
-                        <br />
                         <br />
                         <br />
                     </div>

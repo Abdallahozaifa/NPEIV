@@ -21,7 +21,7 @@ var upload = multer({
  *  @param{authentication}  - instance of user authentication
  *  @return                 - itself as ann object
  */
-module.exports = function(app, fs, navigation, authentication) {
+module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
     
     
     app.post('/post/pageMgmt/getPageList', function(req, res) {
@@ -46,7 +46,7 @@ module.exports = function(app, fs, navigation, authentication) {
         var pageData = req.query['pageData'];
 
         // Auth. user
-        authentication.authenticateUserExecutor(username, tempkey, function(valid) {
+        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Save new page
                 savePage(pageName, pageData, function(msg) {
@@ -63,7 +63,7 @@ module.exports = function(app, fs, navigation, authentication) {
         var pageName = req.query['pageName'];
 
         // Auth. user
-        authentication.authenticateUserExecutor(username, tempkey, function(valid) {
+        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Delete page
                 deletePage(pageName, function(msg) {
@@ -80,7 +80,7 @@ module.exports = function(app, fs, navigation, authentication) {
         var pageName = req.query['pageName'];
 
         // Auth. user
-        authentication.authenticateUserExecutor(username, tempkey, function(valid) {
+        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Create page
                 createPage(pageName, function(msg) {
@@ -97,7 +97,7 @@ module.exports = function(app, fs, navigation, authentication) {
         var imgData = req.query['imgData'];
 
         // Auth. user
-        authentication.authenticateUserExecutor(username, tempkey, function(valid) {
+        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Call multer to store uploaded image TODO -> fix
                 upload(req, res, function(err) {
@@ -111,42 +111,6 @@ module.exports = function(app, fs, navigation, authentication) {
         });
     });
     
-    /**
-     *  Delte editable page
-     *  @param{name}        - Name of the page
-     *  @param{callback}    - callback
-     */
-    function deletePage(name, callback) {
-        // Delete page from direcotry
-    }
-    
-    /**
-     *  Save new editable page
-     *  @param{name}        - Name of the page
-     *  @param{data}        - The data for the page
-     *  @param{callback}    - callback
-     */
-    function savePage(name, data, callback) {
-        // Back up current page
-
-        // Save new page
-
-    }
-    
-    /**
-     *  Create new editable page
-     *  @param{name}        - Name of the page
-     *  @param{callback}    - callback
-     */
-    function createPage(name, callback) {
-        // Pare name for .html
-        var filename = name.split(".")[0] + ".html";
-        
-        // Read blank page template
-        
-        // Save as new file
-
-    }
     
     /**
      *  Create new editable page

@@ -22,6 +22,7 @@
     <link href='/css/page.css' rel='stylesheet'>
     <link href='/css/colors.css' rel='stylesheet'>
 
+
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/std.js'></script>
     <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
@@ -31,21 +32,61 @@
 
     <!-- CK Editor -->
     <script src="/js/ckeditor/ckeditor.js"></script>
-    
+
     <script type="text/javascript">
-        // User Page Script
+        /*global $*/
+        /* User Page Script */
+
         $(document).ready(function() {
             try {
-                var user =  sessionStorage.getItem("username");
-                
+                var user = sessionStorage.getItem("username");
+
                 $('#UsernameOut').text("Hello " + user);
-            } catch (e) {
+            }
+            catch (e) {
                 $('#UsernameOut').text("Your session has expired, please login again");
             }
-            
+
+            /* Passwrod Rest */
+            $("#ResetPasswordButton").click(function() {
+                $(this).parent().children().toggle();
+            });
+            $("#CanclePasswordButton").click(function() {
+                $(this).parent().children().toggle();
+            });
+            $("#SubmitPasswordButton").click(function() {
+
+                if ($("#NewPassword").val() == $("#ConfirmNewPassword").val()) {
+                    $.post("/post/user/resetPassword", {
+                        username: sessionStorage.getItem("username"),
+                        tempkey: sessionStorage.getItem("guid"),
+                        newpassword: $("#NewPassword").val()
+
+                    }, function(data) {
+                        data = JSON.parse(data);
+                        //console.log(data);
+                        // If loging was a success
+                        if (data.Result == "OK") {
+                            //console.log("Password Changed Successful");
+                            $("#SubmitPasswordButton").parent().children().toggle();
+                            $("#PasswordChangeOUT").show().html("Password Changed Successful");
+                        }
+                        else {
+                            //console.log(data); // Display login failure
+                            $("#SubmitPasswordButton").parent().children().toggle();
+                            $("#PasswordChangeOUT").show().html(data.Message + "- PASSWORD NOT CHANGED!");
+                        }
+
+                    });
+                }
+                else {
+                    $("#PasswordChangeOUT").show().html("Password Missmatch");
+                }
+
+
+            });
+
         });
-        
-        
     </script>
 
 </head>
@@ -88,15 +129,19 @@
             <div class='layout col-sm-12 '>
                 <div class='layout_inner'>
                     <h2 id='UsernameOut'></h2>
-                    
-                    
+
+                    <div>
+                        <button id='ResetPasswordButton'>Change Password</button>
+                        <input hidden=hidden id='NewPassword' type='text' placeholder='New Password' />
+                        <input hidden=hidden id='ConfirmNewPassword' type='text' placeholder='Confrim Password' />
+                        <button hidden=hidden id='SubmitPasswordButton'>Submit</button>
+                        <button hidden=hidden id='CanclePasswordButton'>Cancel</button>
+                        <p class='inline-block ' id='PasswordChangeOUT'></p>
+                   </div>
                 </div>
             </div>
         </div>
     </div>
-        
-
-        
 </body>
 
 </html>

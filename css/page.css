@@ -17,6 +17,7 @@ h1 {
 }
 /* MassUsable */
 
+
 .float_right {
     float: right;
 }
@@ -116,6 +117,11 @@ h1 {
 
 .text_widget_content {
     display: inline-block;
+}
+
+.inline-block {
+    display: inline-block;
+    vertical-align: baseline;
 }
 
 /* Naviagation */

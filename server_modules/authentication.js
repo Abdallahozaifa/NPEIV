@@ -1,12 +1,13 @@
-var rngString = require("randomstring"); // Random string genorator for temporory key genoration
+
 
 /**
  *  Authentication server module
  *  @param{app}           - Instance of express
  *  @param{DataStoreGate} - Instance of the google datastore connection
+ *  @param{rngString}     - Instance of randomstring
  *  @return               - Itself
  */
-module.exports = function(app, DataStoreGate) {
+module.exports = function(app, DataStoreGate, crypto, rngString) {
 
    /** POST - for a user to login, and obtain a temporary key with a ttl of 2 hours
     *  Paramaters: (all mandaotry unless otherwise)
@@ -91,12 +92,11 @@ module.exports = function(app, DataStoreGate) {
    });
 
    /**
-    * Authenicates if a user with their temp key
+    * Authenicates a user with their temp key
     * PRE - the user must be logged in
     * @param {String} username - the type of data being added to the datastore
     * @param {String} tempKey - the value of the data being added
     * @param {function} callback(valid) - callback function, passing if the transaction is valid
-    * @return {function} callback - callback function
     */
    this.authenticateUser = function(username, tempKey, callback) {
       // Find user in the datastore
@@ -119,7 +119,14 @@ module.exports = function(app, DataStoreGate) {
          }
       });
    }
-
+   
+   /**
+    * Authenicates an admin user with their temp key
+    * PRE - the user must be logged in
+    * @param {String} username - the type of data being added to the datastore
+    * @param {String} tempKey - the value of the data being added
+    * @param {function} callback(valid) - callback function, passing if the transaction is valid
+    */
    this.authenticateUserAdmin = function(username, tempKey, callback) {
       // Find user in the datastore
       DataStoreGate.getObjFromStore("User", username, function(err, user) {
@@ -141,7 +148,32 @@ module.exports = function(app, DataStoreGate) {
          }
       });
    }
-
+   
+   /**
+    * Authenicates if a user with their temp key
+    * @param {String} pwd - the new password to validate the complexity
+    * @return             - 
+    */
+   this.validatePasswordComplexity = function(pwd) {
+      // Criteria : length[10]
+      if ( pwd && pwd.length >= 10) {
+         return true; // New passwrod valid
+      }
+      return false; // Length too short
+   }
+   
+   
+   
+   this.hash = function(pwd) {
+      const secret = "43143988327398957279342419750374600193"; // !!!WARNING - CHANGING THIS WILL BRAKE EVERYTHING!!! 43143988327398957279342419750374600193
+      
+      var hash = crypto.createHmac('sha256', secret)
+                   .update(pwd)
+                   .digest('hex');
+      //console.log(hash);
+      return hash;
+   }
+   //this.hash("I love pizza");
    return this;
 };
 
