@@ -1,4 +1,6 @@
-/*
+
+
+/**
  *  Authentication server module
  *  @param{app}           - Instance of express
  *  @param{DataStoreGate} - Instance of the google datastore connection
