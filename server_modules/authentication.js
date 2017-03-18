@@ -1,5 +1,3 @@
-
-
 /**
  *  Authentication server module
  *  @param{app}           - Instance of express
