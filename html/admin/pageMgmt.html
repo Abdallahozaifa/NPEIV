@@ -2,278 +2,304 @@
 <html>
 
 <head>
-    <title>NPEIV</title>
-    <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
-    <!-- Disables Mobile Zoom -->
-    <meta name='viewport' content='width=device-width'>
+   <title>NPEIV</title>
+   <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
+   <!-- Disables Mobile Zoom -->
+   <meta name='viewport' content='width=device-width'>
 
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
+   <!-- jQuery -->
+   <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
 
-    <!-- Bootstrap -->
-    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <!-- Bootstrap -->
+   <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Font Awsome -->
-    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+   <!-- Font Awsome -->
+   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-    <!-- Style Sheets -->
-    <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
-    <link href='/css/page.css' rel='stylesheet'>
-    <link href='/css/colors.css' rel='stylesheet'>
+   <!-- Style Sheets -->
+   <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
+   <link href='/css/page.css' rel='stylesheet'>
+   <link href='/css/colors.css' rel='stylesheet'>
+   <link href='/css/navigator.css' rel='stylesheet'>
 
-    <!-- JavaScript -->
-    <script type='text/javascript' src='/js/std.js'></script>
-    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+   <!-- JavaScript -->
+   <script type='text/javascript' src='/js/std.js'></script>
+   <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
 
-    <!-- jQueryUI -->
-    <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <link href="/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+   <!-- jQueryUI -->
+   <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+   <link href="/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- jTable -->
-    <script src="/js/jtable.2.4.0/jquery.jtable.min.js"></script>
-    <link href="/js/jtable.2.4.0/themes/metro/purple/jtable.min.css" rel="stylesheet" type="text/css" />
+   <!-- jTable -->
+   <script src="/js/jtable.2.4.0/jquery.jtable.min.js"></script>
+   <link href="/js/jtable.2.4.0/themes/metro/purple/jtable.min.css" rel="stylesheet" type="text/css" />
 
 
 </head>
 
 <style type="text/css">
-    @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
-    * {
-        box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-    }
-    
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-    
-    p {
-        font-size: 1.1em;
-        margin: 1em 0;
-    }
-    
-    .description {
-        margin: 1em auto 2.25em;
-    }
-    
-    body {
-        width: 40%;
-        min-width: 300px;
-        max-width: 400px;
-        margin: 1.5em auto;
-        color: #333;
-    }
-    
-    h1 {
-        font-family: 'Pacifico', cursive;
-        font-weight: 400;
-        font-size: 2.5em;
-    }
-    
-    ul {
-        list-style: none;
-        padding: 0;
-        .inner {
-            padding-left: 1em;
-            overflow: hidden;
-            display: none;
-            &.show {
-                /*display: block;*/
-            }
-        }
-        li {
-            margin: .5em 0;
-            a.toggle {
-                width: 100%;
-                display: block;
-                background: rgba(0, 0, 0, 0.78);
-                color: #fefefe;
-                padding: .75em;
-                border-radius: 0.15em;
-                transition: background .3s ease;
-                &:hover {
-                    background: rgba(0, 0, 0, 0.9);
-                }
-            }
-        }
-    }
+   .navbuilder-item-seletced {
+      background: #0099ff;
+   }
 </style>
 
 <body class='b_purple'>
-    <!-- Header+Nav Bar -->
-    <nav id='main_header_bar' class='b_white c_dark noselect'>
-        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
-        </h1>
+   <!-- Header+Nav Bar -->
+   <nav id='main_header_bar' class='b_white c_dark noselect'>
+      <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
+      </h1>
 
-        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
-            <div class='font_small'>Menu</div>
+      <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
+         <div class='font_small'>Menu</div>
 
-            <!-- Donate Button -->
-        </div>
-        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
-            <div class='font_small'>Donate</div>
-        </div>
+         <!-- Donate Button -->
+      </div>
+      <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+         <div class='font_small'>Donate</div>
+      </div>
 
-        <!-- Search Bar -->
+      <!-- Search Bar -->
 
-        <form class='main_header_item float_right font_big'>
-            <input class='searchBar' type="text" name="search" placeholder="Search...">
-        </form>
-    </nav>
+      <form class='main_header_item float_right font_big'>
+         <input class='searchBar' type="text" name="search" placeholder="Search...">
+      </form>
+   </nav>
 
-    <script type="text/javascript">
-        var currSecNums = 0;
+   <script type="text/javascript">
+      /*global $*/
+      //website for accordion
+      // https://codepen.io/anon/pen/jBYwqL
 
-        function buildNavObject() {
+      var $new_location = null; // for adding nav elements
 
-        }
+      // Get nav object from server
+      var getNav = function() {
+         // Get nav object from server
+         $.get('/get/navigation/main', function(data) {
+            $('#nav-build-holder').html(data);
+            // Set up builder
+            $('#nav-build-holder').find('.pageGroup-name,.page').append("<button onClick='startDeleteElement();' class='navbuilder-delete builderonly'>X</button>");
+            $('#nav-build-holder').find('.pageGroup-children,#nav-root').append("<button onClick='startAddElement(); $new_location = $(this);' class='navbuilder-new builderonly'>+</button");
 
-        function postNavObject() {
-            // POST NAV OBJECT TO SERVER
-        }
+            $('#nav-build-holder').find("#nav-root").sortable({
+               items: "li",
+               placeholder: "ui-state-highlight"
+            });
+            $('#nav-build-holder').find("#sortable").disableSelection();
 
-        var addPage = function(parent_obj, name) {
+         });
 
-        };
 
-        var deletePage = function() {
+      }
 
-        }
+      var saveNav = function() {
+         parseRealNav();
+         // Tell server to creat new page TODO
+         $.post('/post/pageMgmt/savNav', {
+            adminUsername: sessionStorage.getItem('username'),
+            tempkey: sessionStorage.getItem('guid'),
+            newNavFile: $('#nav-build-holder').html(),
+         }).done(function(data) {
+            alert("Data Loaded: " + data);
+         });
+      };
 
-        var deletePage = function() {
+      // Generate a real nav from the builder
+      var parseRealNav = function() {
+         // Remove builder elemtns
+         $('#nav-build-holder').find('#nav-root').find('.builderonly').remove();
 
-        }
+         // Build Links
+         $('#nav-build-holder').find('#nav-root').find('.page').each(function() {
+            var name = $(this).data('name');
+            var pageref = $(this).data('pageref');
+            $(this).html("<a href='" + pageref + "'>" + name + "</a>");
 
-        var addPageGroup = function(accordElm, currSecNums, paragraph) {
-            accordElm.append("<h2 class='pageGroupName'>Section " + ++currSecNums + "</h2>");
-            accordElm.append("<div class='pageGroupElem'> <p>" + paragraph + "</p> </div>");
-        };
+         });
 
-        var createAccordian = function(accordElm) {
-            addPageGroup(accordElm, currSecNums, "Hello there this is an accordion");
-        };
+         // Turn off sortale
+         $('#nav-build-holder').find('#nav-root').each(function() {
+            try {
+               $(this).sortable("destroy");
+            }
+            catch (e) {
+               // Ignore
+            }
+         });
 
-        $(document).ready(function() {
-            createAccordian($(".accordion"));
-            $(".accordion").accordion({
-                collapsible: true
+
+      }
+
+      //
+      var startAddElement = function() {
+         $("#new-dialog").dialog("open");
+      }
+
+      // TODO
+      function newDialogSubmit() {
+
+         var name = $("#new-name").val();
+
+         $("#new-dialog").dialog("close");
+
+         if ($('#new-page').get(0).checked) {
+            $new_location.before("<li class='page' data-name=" + name + " data-pageref='/pub/" + name + "' a>" + name + "<button class='navbuilder-delete builderonly'>X</button></li>");
+
+            parseRealNav(); // Crate a savable nav
+
+            // Tell server to creat new page TODO
+            $.post('/post/pageMgmt/CreatePage', {
+               adminUsername: sessionStorage.getItem('username'),
+               tempkey: sessionStorage.getItem('guid'),
+               newNavFile: $('#nav-build-holder').html(),
+               pageName: name
+            }).done(function(data) {
+               alert("Data Loaded: " + data);
+            });
+         }
+         else if ($('#new-pageGrup').get(0).checked) {
+            $new_location.before("<li class='pageGroup'><a class='pageGroup-name' href='javascript:void(0);'>" + name + "<button class='navbuilder-delete  builderonly'>X</button></a><ul class='pageGroup-children'><button class='navbuilder-new  builderonly'>+</button></ul>");
+         }
+
+         return false;
+      }
+
+
+
+
+
+      function deleteNavBuilderElement($t) {
+         if (confirm("Are you sure?")) {
+            if ($t.parent().parent().hasClass('pageGroup')) {
+               if ($t.parent().parent().children(".pageGroup-children").children("li").length == 0) {
+                  $t.parent().parent().remove();
+               }
+               else {
+
+               }
+            }
+            else {
+               $t.parent().remove();
+               // Tell server
+            }
+
+         }
+
+      };
+
+
+      $(document).ready(function() {
+         $(".page,.pageGroup-name").click(function() {
+            var $this = $(this);
+
+            $(".page,.pageGroup-name").each(function() {
+               $(this).removeClass("navbuilder-item-seletced");
             });
 
-            $('.toggle').click(function(e) {
-                e.preventDefault();
+            $("#nav-item-out").html($this.text() + " " + (($this.hasClass("page")) ? "(page)" : "(page group)"));
 
-                var $this = $(this);
+            if ($this.hasClass("page")) {
+               $("#nav-data-out").html("Refrence: " + $this.data("pageref"));
+            }
+            else {
+               $("#nav-data-out").html("");
+            }
 
-                if ($this.next().hasClass('show')) {
-                    $this.next().removeClass('show');
-                    $this.next().slideUp(350);
-                }
-                else {
-                    $this.parent().parent().find('li .inner').removeClass('show');
-                    $this.parent().parent().find('li .inner').slideUp(350);
-                    $this.next().toggleClass('show');
-                    $this.next().slideToggle(350);
-                }
-            });
-        });
-    </script>
 
-    <div class='body_prime container-fluid'>
+            $this.addClass("navbuilder-item-seletced");
 
-        <!-- Nav Items Are Populated Here -->
-        <div id='navigation_holder'></div>
+         });
 
-        <div class="row layout_row">
-            <!-- 100 layout -->
-            <div class="layout col-sm-12 ">
-                <div class="layout_inner">
-                    <h2>Page Management </h2>
+         $("#new-dialog").dialog({
+            autoOpen: false
+         });
 
-                    <!-- build nav here -->
-                    <ul class="accordion">
-                        <li>
-                            <a class="toggle" href="javascript:void(0);">Item 1</a>
-                            <ul class="inner">
-                                <li>Option 1</li>
-                                <li>Option 2</li>
-                                <li>Option 3</li>
-                            </ul>
-                        </li>
+         $("#new-submit").submit(function(e) {
+            e.preventDefault();
+         });
 
-                        <li>
-                            <a class="toggle" href="javascript:void(0);">Item 2</a>
-                            <ul class="inner">
-                                <li>Option 1</li>
-                                <li>Option 2</li>
-                                <li>Option 3</li>
-                            </ul>
-                        </li>
 
-                        <li>
-                            <a class="toggle" href="javascript:void(0);">Item 3</a>
-                            <ul class="inner">
-                                <li>
-                                    <a href="#" class="toggle">Open Inner</a>
-                                    <div class="inner">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus placerat fringilla. Duis a elit et dolor laoreet volutpat. Aliquam ultrices mauris id mattis imperdiet. Aenean cursus ultrices justo et varius. Suspendisse aliquam orci id dui dapibus
-                                            blandit. In hac habitasse platea dictumst. Sed risus velit, pellentesque eu enim ac, ultricies pretium felis.
-                                        </p>
-                                    </div>
-                                </li>
 
-                                <li>
-                                    <a href="#" class="toggle">Open Inner #2</a>
-                                    <div class="inner">
-                                        <p>
-                                            Children will automatically close upon closing its parent.
-                                        </p>
-                                    </div>
-                                </li>
+      });
+   </script>
 
-                                <li>Option 3</li>
-                            </ul>
-                        </li>
+   <div class='body_prime container-fluid'>
 
-                        <li>
-                            <a class="toggle" href="javascript:void(0);">Item 4</a>
-                            <ul class="inner">
-                                <li>
-                                    <a href="#" class="toggle">Technically any number of nested elements</a>
-                                    <ul class="inner">
-                                        <li>
-                                            <a href="#" class="toggle">Another nested element</a>
-                                            <div class="inner">
-                                                <p>
-                                                    As long as the inner element has inner as one of its classes then it will be toggled.
-                                                </p>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tempus placerat fringilla. Duis a elit et dolor laoreet volutpat. Aliquam ultrices mauris id mattis imperdiet. Aenean cursus ultrices justo et varius. Suspendisse aliquam orci id dui dapibus
-                                                    blandit. In hac habitasse platea dictumst. Sed risus velit, pellentesque eu enim ac, ultricies pretium felis.
-                                                </p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+      <!-- Nav Items Are Populated Here -->
+      <div id='navigation_holder'></div>
 
-                                <li>Option 2</li>
+      <div class="row layout_row">
+         <!-- 100 layout -->
+         <div class="layout col-sm-12 ">
+            <div class="layout_inner">
+               <h2>Page/Navigation Management </h2>
 
-                                <li>Option 3</li>
-                            </ul>
-                        </li>
-                    </ul>
 
-                </div>
+
             </div>
-        </div>
+         </div>
+      </div>
+
+      <div class="row layout_row">
+         <!-- 50/50 layout -->
+         <div class="layout col-sm-6">
+            <div class="layout_inner">
+               <!-- build nav here -->
+               <h3>Navigation Editor</h3>
+
+               <hr>
+               <div id='nav-build-holder'>
+
+               </div>
+
+               <!--<ul id='nav-root'>-->
+               <!--   <li class='page' data-pageref='/' data-name='Home' data-readonly='true'>Home</li>-->
+               <!--   <li class="pageGroup">-->
+               <!--      <a class="pageGroup-name" href="javascript:void(0);">About<button class='navbuilder-delete builderonly'>X</button></a>-->
+               <!--      <ul class="pageGroup-children">-->
+               <!--         <li class='page' data-pageref='#' data-name='TEST'>TEST</li>-->
+               <!--         <button class='navbuilder-new builderonly'>+</button>-->
+               <!--      </ul>-->
+               <!--   </li>-->
+               <!--   <li class='page' data-pageref='/public/login' data-name='Login' data-readonly='true'>Login </li>-->
+               <!--   <button class='navbuilder-new builderonly'>+</button>-->
+
+               <!--</ul>-->
+
+            </div>
+
+         </div>
+         <div class="layout col-sm-6">
+            <div class="layout_inner">
+               <h3>Navigation Command</h3>
+               <button onClick='getNav();'>Get</button>
+               <button onClick='saveNav();'>Save</button>
 
 
+               <hr>
+               <h3 id='nav-item-out'></h3>
 
 
-    </div>
+               <button>Delete</button>
+               <h3 id='nav-data-out'></h3>
+            </div>
+         </div>
+      </div>
+
+      <div id='new-dialog' title="New">
+         <div>
+            <input id='new-page' type="radio" name="type" value="page" required>Page<br>
+            <input id='new-pageGroup' type="radio" name="type" value="pageGroup" required>Page Group<br>
+            <h4 class='inline-block'>Name:</h4>
+            <input id='new-name' type="text" name="name" required>
+
+            <button id='new-submit' onClick='newDialogSubmit();'>Submit</button>
+         </div>
+
+      </div>
+
+   </div>
 
 </body>
 

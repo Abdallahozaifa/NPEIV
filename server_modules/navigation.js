@@ -1,7 +1,7 @@
-var NavigationObjects = require("./DataObjects/NavigationObject.js"); // Refrence for navigation objects
+
 
 // Dynamic Navigation
-module.exports = function(app, DatastoreGate) {
+module.exports = function(fs, app, DatastoreGate, rootPath) {
 
     /** POST - for obtaining the navigation object from the datastore
      * Paramaters: (all mandaotry unless otherwise)
@@ -12,22 +12,48 @@ module.exports = function(app, DatastoreGate) {
         res.send(JSON.stringify(main_navigation));
     });
 
-    this.addPage = function(name, parent_string, callback) {
-        // Get nav obj from datastore
-        getNavObjFromDatastore(function(err, data) {
-            // Find parent
-            for (var i = 0; i < data.children.length; i++) {
-                
-            }
-            
-            // Add page to nav
-            
-            
-            
-            // callback(err, data)
-        });
+    app.get('/get/navigation/main', function(req, res) {
+        res.sendFile(rootPath + '/html/nav/nav.html');
+    });
+    
+    app.get('/get/navigation/member', function(req, res) {
+        res.sendFile(rootPath + '/html/nav/nav-member.html');
+    });
+    
+    app.get('/get/navigation/admin', function(req, res) {
+        res.sendFile(rootPath + '/html/nav/nav-admin.html');
+    });
 
-        
+    this.addPage = function(name, callback) {
+        // Read in basic page template
+        fs.readFile(rootPath + '/html/nav/basic_page_template.html', 'utf8', function(err, data) {
+            if (!err) {
+                fs.writeFile(rootPath + '/html/pub/' + name + '.html', data, 'utf8', function(err) {
+                    if (!err) {
+                        callback(false);
+                    }
+                    else {
+                        callback(err);
+                    }
+
+                });
+            }
+            else {
+                callback(err);
+            }
+        });
+    }
+
+    this.saveNavFile = function(file_string,callback) {
+        fs.writeFile(rootPath + '/html/nav/nav.html', file_string, 'utf8', function(err) {
+            if (!err) {
+                callback(false);
+            }
+            else {
+                callback(err);
+            }
+
+        });
     }
 
     this.deletePage = function(name, callback) {
@@ -56,27 +82,6 @@ module.exports = function(app, DatastoreGate) {
 
     this.getAllPages = function(callback) {
         // Read all in '__dirname/html/Editables/' dir (excluding backup)
-    }
-
-    function getNavObjFromDatastore(callback) {
-        DatastoreGate.getObjFromStore("NAV", "NAV", callback);
-    }
-
-    /**
-     * 
-     */
-    function putNavObjToDatastor(obj, callback) {
-        // Save new nav object
-        DatastoreGate.updateObjFromStore("NAV", "NAV", obj, function(err, data) {
-            if (!err) {
-                // If no error from datastore
-                callback(false);
-            }
-            else {
-                // If error from datastore
-                callback(err);
-            }
-        });
     }
 
     return this;

@@ -8,14 +8,15 @@ var googleBtn = $(".g-signin");
 $(document).ready(function() {
     try {
         // Check that the users temp key ttl is not expired
-    if (sessionStorage.getItem("loginTTL") > Date.now()) {
-        // Redirect to user page 
-        window.location.href = "/member/user";
+        if (sessionStorage.getItem("loginTTL") > Date.now()) {
+            // Redirect to user page 
+            window.location.href = "/member/user";
+        }
     }
-    } catch (e) {
+    catch (e) {
         // Ignore
     }
-    
+
 });
 
 function UserLogin() {
@@ -37,6 +38,12 @@ function UserLogin() {
         }
         else {
             console.log(data.Result + data.Message); // Display login failure
+            swal(
+                'Oops...',
+                'Username and Password do NOT match!',
+                'error'
+            )
+
         }
 
     });

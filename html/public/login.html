@@ -14,6 +14,11 @@
     <!-- Font Awsome -->
     <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
+    <!-- for IE support -->
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+    
+
     <!-- Bootstrap -->
     <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -215,7 +220,7 @@
 
 
 
-    <style  type="text/css">
+    <style type="text/css">
         /* Full-width input fields */
         
         .input1[type=text] {
@@ -242,7 +247,6 @@
         .container1 {
             padding: 16px;
         }
-        
         /* The Modal (background) */
         
         .modal {
@@ -316,7 +320,6 @@
                 transform: scale(1)
             }
         }
-       
     </style>
 
 
@@ -457,8 +460,7 @@
                 <center><i class="fa fa-question-circle-o" style="font-size:13vh" aria-hidden="true"></i></center>
                 <br />
 
-                <p style="font-size:2vh">Please enter you username address to your account. If the username is part of an account, 
-                an Email will be sent to this account with a new password for you to login. Once you are in, change your password for you to remember</p>
+                <p style="font-size:2vh">Please enter you username address to your account. If the username is part of an account, an Email will be sent to this account with a new password for you to login. Once you are in, change your password for you to remember</p>
                 <br />
 
                 <label class="font_med"><b>Username:</b></label>
@@ -486,7 +488,7 @@
         $(document).ready(function() {
             $('#frgpwd').click(function() {
                 $.post("/post/user/resetPassword?username=" + $('#user_name1').val(), function(data) {
-                    // TODO
+
 
                     console.log(data.Result + data.Message); // Display login failure
 

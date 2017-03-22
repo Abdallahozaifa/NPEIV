@@ -19,7 +19,7 @@ var DataStoreGate = require('./server_modules/DataStoreGate.js')(); // The comm.
 
 var Email = require('./server_modules/Email.js')(); // TODO
 
-var Navigation = require('./server_modules/navigation.js')(app, DataStoreGate); // Start dynamic navigation module
+var Navigation = require('./server_modules/navigation.js')(fs, app, DataStoreGate, root); // Start dynamic navigation module
 
 var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate, crypto, randomString); // Module for user login and user authentication
 
@@ -37,10 +37,11 @@ var UserMgmt  = require('./server_modules/UserMgmt.js')( randomString, app, Auth
 app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/img', express.static('img'));
+app.use('/node_modules' ,express.static('node_modules'));
 
 /* GET HOMEPAGE */
 app.get('/', function(req, res) {
-    res.sendFile(root + '/index.html', function(err) {
+    res.sendFile(root + '/html/index.html', function(err) {
         if (err) {
             res.status(err.status).end();
         }
@@ -49,6 +50,22 @@ app.get('/', function(req, res) {
 
 /* GET PUBLIC PAGES */
 app.get('/public/*', function(req, res) {
+    res.sendFile(root + '/html/' + req.path + '.html', function(err) {
+        if (err) {
+            res.status(err.status).end();
+        }
+    });
+});
+
+app.get('/pub/*', function(req, res) {
+    res.sendFile(root + '/html/' + req.path + '.html', function(err) {
+        if (err) {
+            res.status(err.status).end();
+        }
+    });
+});
+
+app.get('/nav/*', function(req, res) {
     res.sendFile(root + '/html/' + req.path + '.html', function(err) {
         if (err) {
             res.status(err.status).end();

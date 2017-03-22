@@ -22,8 +22,8 @@ var upload = multer({
  *  @return                 - itself as ann object
  */
 module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
-    
-    
+
+
     app.post('/post/pageMgmt/getPageList', function(req, res) {
         // Extracet post data
         var adminUsername = req.query['adminUsername'] || req.body['adminUsername'];
@@ -37,7 +37,7 @@ module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
         });
     });
 
-    
+
     app.post('/post/pageMgmt/SavePage', function(req, res) {
         // Extracet post data
         var username = req.query['username'];
@@ -66,30 +66,101 @@ module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
         authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Delete page
-                deletePage(pageName, function(msg) {
-                    res.send(msg);
+                navigation.deletePage(pageName, function(err, data) {
+
+                    //res.send(msg);
                 });
             }
         });
     });
 
+    app.post('/post/pageMgmt/savNav', function(req, res) {
+        // Extract post data
+        var username = req.query['adminUsername'] || req.body['adminUsername'];
+        var tempkey = req.query['tempkey'] || req.body['tempkey'];
+        var newNavFile = req.query['newNavFile'] || req.body['newNavFile'];
+
+        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
+            var _REPLY = {
+                Result: "ERROR",
+                Message: ""
+            };
+            if (valid) {
+                // Save nave
+                navigation.saveNavFile(newNavFile, function(err) {
+                    if (!err) {
+                        _REPLY.Result = "OK";
+                        _REPLY.Message = "none";
+                    }
+                    else {
+                        _REPLY.Message = err;
+                    }
+                    res.send(JSON.stringify(_REPLY));
+                });
+            }
+            else {
+                _REPLY.Message = "Auth Fail";
+                res.send(JSON.stringify(_REPLY));
+            }
+        });
+    });
+
+
+    /** POST - for an admon to add a navigatale page
+     * Paramaters: (all mandaotry unless otherwise)
+     *      username - the username of the user
+     *      tempkey - the users current temp key
+     *      pageName - the new page name
+     *      newNavFile - the new navigation object to save (ie. from page editor) (in string format)
+     *  Response Structure: (JSON)
+     *      Result: "OK" || "ERROR"
+     *      Message: [error]
+     *      Record: [user object]
+     */
     app.post('/post/pageMgmt/CreatePage', function(req, res) {
         // Extract post data
-        var username = req.query['username'];
-        var tempkey = req.query['tempkey'];
-        var pageName = req.query['pageName'];
+        var username = req.query['adminUsername'] || req.body['adminUsername'];
+        var tempkey = req.query['tempkey'] || req.body['tempkey'];
+        var pageName = req.query['pageName'] || req.body['pageName'];
+        var newNavFile = req.query['newNavFile'] || req.body['newNavFile'];
 
         // Auth. user
         authentication.authenticateUserAdmin(username, tempkey, function(valid) {
+            var _REPLY = {
+                Result: "ERROR",
+                Message: ""
+            };
             if (valid) {
                 // Create page
-                createPage(pageName, function(msg) {
-                    res.send(msg);
+                navigation.addPage(pageName, function(err) {
+                    if (!err) {
+                        navigation.saveNavFile(newNavFile, function(err) {
+                            if (!err) {
+                                _REPLY.Result = "OK";
+                                _REPLY.Message = "none";
+                            }
+                            else {
+                                _REPLY.Message = err;
+                            }
+                            res.send(JSON.stringify(_REPLY));
+                        });
+                    }
+                    else {
+                        _REPLY.Message = err;
+                        res.send(JSON.stringify(_REPLY));
+                    }
+
                 });
+            }
+            else {
+                _REPLY.Message = "Auth Fail";
+                res.send(JSON.stringify(_REPLY));
             }
         });
     });
 
+
+    // TODO
     app.post('/post/pageMgmt/upload/Image', function(req, res) {
         // Extract post data
         var username = req.query['username'];
@@ -110,24 +181,6 @@ module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
             }
         });
     });
-    
-    
-    /**
-     *  Create new editable page
-     *  @param{name}        - Name of the page
-     *  @param{callback}    - callback
-     */
-    function backUp(fileName, data, callback) {
-        // Pare name for .html
-        var filename = Date.now() + "-" + fileName;
-        
-        fs.writeFile(filename , data, (err) => {
-          if (err) throw err;
-          console.log(filename + 'has been saved!');
-        });
-    }
-    
-    
 
     return this;
 }
