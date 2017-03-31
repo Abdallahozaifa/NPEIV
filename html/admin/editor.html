@@ -1,0 +1,131 @@
+<div class='b_dark' id='editorBar'>
+    <script src="/js/ckeditor/ckeditor.js"></script>
+    <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
+
+    <script type="text/javascript">
+        /*global $*/
+        /*global CKEDITOR*/
+
+        //<div class='editorArrangeHandle  noselect '><h2 class='c_white fa fa-arrows-v'></h2></div>
+        $(document).ready(function() {
+
+            $('.uiBuilderElement').draggable({
+                revert: true,
+                revertDuration: 0
+            });
+
+            function editorInit() {
+                $('.layout_inner , .body_prime').droppable({
+                    accept: ".uiBuilderElement",
+                    greedy: true,
+                    drop: function(event, ui) {
+                        if (ui.draggable.get(0).classList.contains('uiTextElement')) {
+                            $(this).addText(editorInit);
+
+                        }
+                        else if (ui.draggable.get(0).classList.contains('ui100Layout')) {
+                            $(this).initLayout({
+                                style: '100_0'
+                            }, editorInit);
+
+                        }
+                        else if (ui.draggable.get(0).classList.contains('ui5050Layout')) {
+                            $(this).initLayout({
+                                style: '50_50'
+                            }, editorInit);
+
+                        }
+                        else if (ui.draggable.get(0).classList.contains('ui7030Layout')) {
+                            $(this).initLayout({
+                                style: '70_30'
+                            }, editorInit);
+
+                        }
+                        else if (ui.draggable.get(0).classList.contains('ui330Layout')) {
+                            $(this).initLayout({
+                                style: '30_30_30'
+                            }, editorInit);
+
+                        }
+                    }
+                });
+
+                $('.layout_inner').sortable({
+                    containment: ".body_prime",
+                    handle: ".editorArrangeHandle"
+                });
+
+                //$('.layout_inner').disableSelection();
+
+                for (name in CKEDITOR.instances) {
+                    CKEDITOR.instances[name].destroy(true);
+                }
+
+                $('.text_widget').each(function() {
+                    if (!$(this).children().hasClass('editorArrangeHandle')) {
+                        $(this).prepend("<div class='editorArrangeHandle  noselect '><h2 class='c_white fa fa-arrows-v'></h2></div>");
+                    }
+
+                });
+
+
+
+                $('.text_widget_content').each(function() {
+                    $(this).attr('contenteditable', 'true');
+                    CKEDITOR.inline(this);
+                });
+
+
+            }
+            editorInit();
+        });
+
+        function finalize() {
+            for (var name in CKEDITOR.instances) {
+                CKEDITOR.instances[name].destroy(true);
+            }
+
+            $('.text_widget_content').each(function() {
+                try {
+                    $(this).removeAttr('contenteditable');
+                }
+                catch (e) {
+                    //console.log(e);
+                }
+
+            });
+
+            try {
+                $('.layout_inner').sortable("destroy");
+            }
+            catch (e) {
+                //console.log(e);
+            }
+
+
+            $('.editorArrangeHandle').each(function() {
+                $(this).remove();
+            });
+
+            $('#editorBar').remove();
+
+            //$.post('/post/pageMgmt/SavePage' )
+
+            // Tell server to save page TODO
+            $.post('/post/pageMgmt/SavePage', {
+                adminUsername: sessionStorage.getItem('username'),
+                tempkey: sessionStorage.getItem('guid'),
+                pageName: $('html').data('path'),
+                pageData: $('html').get(0).outerHTML,
+            }).done(function(data) {
+                alert("Page Saved: " + data);
+            });
+        }
+    </script>
+    <div class='c_white noselect uiBuilderElement uiTextElement' style='display:inline;'>Text</div>
+    <div class='c_white noselect uiBuilderElement ui100Layout' style='display:inline;'>100</div>
+    <div class='c_white noselect uiBuilderElement ui5050Layout' style='display:inline;'>50/50</div>
+    <div class='c_white noselect uiBuilderElement ui7030Layout' style='display:inline;'>70/30</div>
+    <div class='c_white noselect uiBuilderElement ui330Layout' style='display:inline;'>3x30</div>
+    <button type="button" class='c_dark' onClick='finalize()' style='display:inline;'>Fin</div>
+    </div>

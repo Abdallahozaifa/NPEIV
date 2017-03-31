@@ -1,4 +1,4 @@
-const Mailjet = require('node-mailjet').connect('6ef5c705af275f422108bbc4ba81ebb9', 'bc8249de0064715564eb75fbed3ec907');
+const Mailjet = require('node-mailjet').connect('ebedfc71fb5b8ea8e20b38a23fa20949', '3b489bab433ec0b3049f5a12b3a2aa82');
 
 
 module.exports = function() {

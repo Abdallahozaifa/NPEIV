@@ -21,7 +21,7 @@ var upload = multer({
  *  @param{authentication}  - instance of user authentication
  *  @return                 - itself as ann object
  */
-module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
+module.exports = function(app, fs, navigation, authentication, DataStoreGate, rootPath ) {
 
 
     app.post('/post/pageMgmt/getPageList', function(req, res) {
@@ -37,30 +37,39 @@ module.exports = function(app, fs, navigation, authentication, DataStoreGate) {
         });
     });
 
-
+    // TODO
     app.post('/post/pageMgmt/SavePage', function(req, res) {
         // Extracet post data
-        var username = req.query['username'];
-        var tempkey = req.query['tempkey'];
-        var pageName = req.query['pageName'];
-        var pageData = req.query['pageData'];
+        var adminUsername = req.query['adminUsername'] || req.body['adminUsername'];
+        var tempkey = req.query['tempkey'] || req.body['tempkey'];
+        var pageName = req.query['pageName'] || req.body['pageName'];
+        var pageData = req.query['pageData'] || req.body['pageData'];
 
         // Auth. user
-        authentication.authenticateUserAdmin(username, tempkey, function(valid) {
+        authentication.authenticateUserAdmin(adminUsername, tempkey, function(valid) {
             if (valid) {
-                // Save new page
-                savePage(pageName, pageData, function(msg) {
-                    res.send(msg);
+                fs.writeFile(rootPath + '/html/' + pageName , pageData, function(err) {
+                    if (!err) {
+                        res.send("Success");
+                    } else {
+                        res.send("Write Error:" + err);
+                    }
                 });
+            } else {
+                res.send("Auth Fail");
             }
         });
     });
 
+
+
+
+    // TODO
     app.post('/post/pageMgmt/DeletePage', function(req, res) {
         // Extract post data
-        var username = req.query['username'];
-        var tempkey = req.query['tempkey'];
-        var pageName = req.query['pageName'];
+        var username = req.query['username'] || req.body['username'];
+        var tempkey = req.query['tempkey'] || req.body['tempkey'];
+        var pageName = req.query['pageName'] || req.body['pageName'];
 
         // Auth. user
         authentication.authenticateUserAdmin(username, tempkey, function(valid) {

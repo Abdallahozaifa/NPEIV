@@ -28,6 +28,8 @@ module.exports = function(fs, app, DatastoreGate, rootPath) {
         // Read in basic page template
         fs.readFile(rootPath + '/html/nav/basic_page_template.html', 'utf8', function(err, data) {
             if (!err) {
+                data = data.replace('<html>',"<html data-path='"+'pub/' + name + ".html' >")
+                
                 fs.writeFile(rootPath + '/html/pub/' + name + '.html', data, 'utf8', function(err) {
                     if (!err) {
                         callback(false);

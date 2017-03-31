@@ -1,10 +1,10 @@
 {
   "name": "npeiv-webapp",
   "version": "0.0.1",
-  "description": "Senior Design Web Application",
+  "description": "NPEIV Web Application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "test": "mocha"
   },
   "repository": {
@@ -17,13 +17,18 @@
   "author": "Hozaifa Abdalla <abdallahozaifa19527@gmail.com>, Luke Poniatowski <lukeponiatowski@gmai.com>, Clint Motosicky <cmoto19@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "~4.4.5"
+    "node": ">=4.4.5"
   },
   "dependencies": {
-    "body-parser": "~1.15.2",
     "express": "~4.14.0",
+    "body-parser": "~1.15.2",
     "fs": "~0.0.1",
+    "randomstring":"~1.1.5",
+    "crypto":"~0.0.3",
     "gcloud": "~0.37.0",
-    "google-cloud": "^0.44.0"
+    "google-cloud": "^0.44.0",
+    "@google-cloud/datastore":"~0.7.1 ",
+    "node-mailjet": "~3.0.6",
+    "multer" : "^1.3.0"
   }
 }

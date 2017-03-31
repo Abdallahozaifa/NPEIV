@@ -4,16 +4,16 @@
 <head>
     <title>NPEIV</title>
     <link rel="icon" type="image" href="/img/smallNPEIV.ico" />
-    
+
     <!-- Disables Mobile Zoom -->
     <meta name='viewport' content='width=device-width'>
 
     <!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
-    
+
     <!-- jQueryUI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-    
+
     <!-- Bootstrap -->
     <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -29,35 +29,73 @@
 
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/main.js'></script>
-    
+
     <!-- Customs -->
-    
+
 </head>
 
 <body class='b_purple'>
-    <!-- Header+Nav Bar -->
-    <nav id='main_header_bar' class='b_white c_dark noselect'>
-        <div id='open_menu' onClick='toggleNavigator();' class='inline-block font_big fa fa-bars text-center'><p class='font_small'>Menu</p></div>
-        
-        <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+    <div>
+        <!-- Header+Nav Bar -->
+        <nav id='main_header_bar' class='b_white c_dark noselect'>
+            <div id='open_menu' onClick='toggleNavigator();' class='inline-block font_big fa fa-bars text-center'>
+                <p class='font_small'>Menu</p>
+            </div>
 
-        <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
-            <div class='font_small'>Donate</div>
+            <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+
+            <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
+                <div class='font_small'>Donate</div>
+            </div>
+
+            <!-- Search Bar -->
+
+            <form class='main_header_item float_right font_big'>
+                <input class='searchBar' type="text" name="search" placeholder="Search...">
+            </form>
+
+        </nav>
+
+        <div id='navigator_holder' class='navigator_holder--hidden'></div>
+
+        <div class='body_prime container-fluid'>
+            <div class="row layout_row">
+                <div class="layout col-sm-12 ">
+                    <div class="layout_inner ui-droppable">
+                        <div class="text_widget">
+                            <div class="text_widget_content cke_focus" style="position: relative;">
+                                <h1><img alt="" data-cke-saved-src="/img/NPEIV.jpg" src="/img/NPEIV.jpg" style="height: 160px; width: 174px; float: left;"><strong>National Partnership to End Interpersonal Violence Across The Lifespan</strong></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Search Bar -->
 
-        <form class='main_header_item float_right font_big'>
-            <input class='searchBar' type="text" name="search" placeholder="Search...">
-        </form>
-        
-    </nav>
-    
-    <div id='navigator_holder' class='navigator_holder--hidden'></div>
+        <br><br>
 
-    <div class='body_prime container-fluid'>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        NPEIV Co-chairs:<br /> Dr. Robert Geffner, Ph.D., ABN, ABPP <br /> Founding Co-chair: Dr. Jacquelyn White, Ph.D.<br /> <br /> Telephone : 858-527-1860 ext. 4042 <br /> Fax : 858-527-1743 <br /> Email : ivatnpeiv@alliant.edu
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        The Institute on Violence, Abuse and Trauma (IVAT) <br /> serves as the fiscal and logistical agent of NPEIV. <br /> <br /> © 2017 by NPEIV, All rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>
+
 
 </html>

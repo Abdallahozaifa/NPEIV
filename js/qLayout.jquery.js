@@ -47,7 +47,7 @@
             // Error if input style does not corespond with existing style
             console.error("qLayout.jquery.js: invalid layot style");
         }
-        this.parent().addClass("container-fluid");
+        //this.parent().addClass("container-fluid");
     
         // If there is a callback, call it
         if (callback != null) {

@@ -1,11 +1,11 @@
 /* IMPORTS */
 const express = require('express');
-const fs = require('fs');
 const app = express();
+
 const bodyParser = require("body-parser");
+const fs = require('fs');
 const randomString = require("randomstring"); // Random string genorator for temporory key genoration
 const crypto = require('crypto');
-
 
 // Setting up app, to user body parser for POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,7 +23,7 @@ var Navigation = require('./server_modules/navigation.js')(fs, app, DataStoreGat
 
 var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate, crypto, randomString); // Module for user login and user authentication
 
-var PageMgmt  = require('./server_modules/PageMgmt.js')( app, fs, Navigation, Authentication, DataStoreGate); // Module for page management
+var PageMgmt  = require('./server_modules/PageMgmt.js')( app, fs, Navigation, Authentication, DataStoreGate, root); // Module for page management
 
 var UserMgmt  = require('./server_modules/UserMgmt.js')( randomString, app, Authentication, DataStoreGate, Email); // Module for user management
 
@@ -37,6 +37,7 @@ var UserMgmt  = require('./server_modules/UserMgmt.js')( randomString, app, Auth
 app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/img', express.static('img'));
+app.use('/files', express.static('files'));
 app.use('/node_modules' ,express.static('node_modules'));
 
 /* GET HOMEPAGE */

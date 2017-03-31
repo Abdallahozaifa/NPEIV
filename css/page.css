@@ -86,7 +86,7 @@ h1 {
     min-width: 480px;
     padding-top: 68px;
     margin: auto;
-    height: auto;
+    min-height: 100vh;
 }
 
 .layout_row {
@@ -102,10 +102,7 @@ h1 {
     padding: 4px 4px 24px 4px;
     background-color: rgb(255, 255, 255);
     min-height: 76px;
-    height: 100%;
 }
-
-.text_widget {}
 
 .text_widget p {
     margin: 8px 2px 4px 8px;
@@ -119,6 +116,7 @@ h1 {
 
 .text_widget_content {
     display: inline-block;
+    width: 100%;
 }
 
 .inline-block {
@@ -238,7 +236,17 @@ h1 {
     width: 200px;
     max-height:calc(100vh - 68px);;
     overflow-y:auto;
+    z-index: 1000;
 }
 .navigator_holder--hidden {
    left:-200px;
+}
+
+
+.footer {
+    bottom: 0;
+      background-color: white;
+    min-height: 30px;
+    width: 100%;   /* Height of the footer */
+  
 }

@@ -1,0 +1,483 @@
+<html data-path="pub/Policy.html" style="">
+
+<head>
+    <title>NPEIV</title>
+    <link rel="icon" type="image" href="/img/smallNPEIV.ico">
+
+    <!-- Disables Mobile Zoom -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <!-- jQueryUI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css">
+    <link href="/css/page.css" rel="stylesheet">
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/navigator.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <!-- Customs -->
+
+    <style>
+        .cke {
+            visibility: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/config.js?t=H0CG"></script>
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/skins/moono-lisa/editor.css?t=H0CG">
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/lang/en.js?t=H0CG"></script>
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/styles.js?t=H0CG"></script>
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css">
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css">
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/copyformatting/styles/copyformatting.css">
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/pastefromword/filter/default.js?t=H0CG"></script>
+    <style>
+        .cke {
+            visibility: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/config.js?t=H0CG"></script>
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/skins/moono-lisa/editor.css?t=H0CG">
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/lang/en.js?t=H0CG"></script>
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/styles.js?t=H0CG"></script>
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css">
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css">
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/copyformatting/styles/copyformatting.css">
+    <script type="text/javascript" src="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/plugins/link/dialogs/link.js?t=H0CG"></script>
+    <link rel="stylesheet" type="text/css" href="https://npeiv-webapp-abdallahozaifa.c9users.io/js/ckeditor/skins/moono-lisa/dialog.css?t=H0CG">
+</head>
+
+<body class="b_purple" style="cursor: auto;">
+    <!-- Header+Nav Bar -->
+    <nav id="main_header_bar" class="b_white c_dark noselect">
+        <div id="open_menu" onclick="toggleNavigator();" class="inline-block font_big fa fa-bars text-center">
+            <p class="font_small">Menu</p>
+        </div>
+
+        <h1 class="inline-block font_big1" id="nav_title" href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+
+        <div id="paypal_icon" class="main_header_item float_right font_big fa fa-paypal">
+            <div class="font_small">Donate</div>
+        </div>
+
+        <!-- Search Bar -->
+
+        <form class="main_header_item float_right font_big">
+            <input class="searchBar" type="text" name="search" placeholder="Search...">
+        </form>
+
+    </nav>
+
+    <div id="navigator_holder" class="navigator_holder--hidden">
+        <!--!REQUIRES JQUERY +1.7-->
+        <ul id="nav-root" class="">
+            <li class="page" data-pageref="/" data-name="Home" data-readonly="true"><a href="/">Home</a></li>
+            <li class="page" data-name="Members" data-pageref="/pub/Members" a=""><a href="/pub/Members">Members</a></li>
+            <li class="page" data-name="Action-Teams" teams="" data-pageref="/pub/Action-Teams" a=""><a href="/pub/Action-Teams">Action Teams</a></li>
+            <li class="page" data-name="National-Plan" data-pageref="/pub/National-Plan" a=""><a href="/pub/National-Plan">National Plan</a></li>
+            <li class="page" data-name="Contact" data-pageref="/pub/Contact" a=""><a href="/pub/Contact">Contact</a></li>
+            <li class="page" data-name="Policy" data-pageref="/pub/Policy" a=""><a href="/pub/Policy">Policy</a></li>
+            <li class="pageGroup"><a class="pageGroup-name" href="javascript:void(0);">Think Tank</a>
+                <ul class="pageGroup-children" style="display: none;">
+                    <li class="page" data-name="Info" data-pageref="/pub/Info" a=""><a href="/pub/Info">Info</a></li>
+                    <li class="page" data-name="Upcoming Events" data-pageref="/pub/Upcoming-Events" a=""><a href="/pub/Upcoming-Events">Upcoming Events</a></li>
+                </ul>
+            </li>
+            <li class="page" data-pageref="/public/login" data-name="Login" data-readonly="true"><a href="/public/login">Login</a></li>
+            <!--!REQUIRES JQUERY +1.7-->
+            <li class="pageGroup" data-readonly="true">
+                <a class="pageGroup-name" href="javascript:void(0);">Admin</a>
+                <ul class="pageGroup-children" style="display: none;">
+                    <li class="page" data-pageref="/admin/pageMgmt" data-name="Page Mgmt" data-readonly="true"><a href="/admin/pageMgmt">Page Mgmt</a></li>
+                    <li class="page" data-pageref="/admin/userMgmt" data-name="User Mgmt" data-readonly="true"><a href="/admin/userMgmt">User Mgmt</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="body_prime container-fluid ui-droppable">
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <h1><img alt="" data-cke-saved-src="/img/NPEIV.jpg" src="/img/NPEIV.jpg" style="float:left; height:160px; width:174px"><strong>National Partnership to End Interpersonal Violence Across The Lifespan</strong></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p><span style="font-size:20px"><strong>POLICY STATEMENT ON TRAUMA-INFORMED CARE</strong></span></p>
+                            <p>​</p>
+                            <p><em>National Partnership to End Interpersonal Violence (NPEIV)</em></p>
+                            <p>September 20, 2016</p>
+                            <p>​</p>
+                            <p><br></p>
+                            <p><strong>Recommendation</strong></p>
+                            <p>The National Partnership to End Interpersonal Violence (NPEIV) advocates for the adoption of a trauma-informed approach in all sectors and systems that affect people across the life span. These include schools, colleges, primary
+                                health care, hospitals, child welfare, human services, mental health services, civil and family courts as well as the criminal justice system (e.g. law enforcement, prosecutors, courts and adult corrections and juvenile
+                                facilities). These systems and sectors need to fully acknowledge the trauma caused by current or past victimization and the impact on the victims and their families so that they can respond in a manner that is fully supportive,
+                                whole person-centered and avoids re-traumatization.</p>
+                            <p><br></p>
+                            <p>Trauma-informed care is a universal-precautions approach to engaging people with histories of trauma that recognizes the presence of trauma symptoms and acknowledges the role that trauma has played in their lives and in the
+                                lives of their families and the professionals who work with them. Trauma may result from an event, series of events and/or circumstances that an individual can experience as threatening or as physically or emotionally harmful.
+                                Such events can have an adverse effect on an individual’s functioning and physical, emotional and/or spiritual well-being. Although many people who experience trauma will go on with their lives without lasting negative
+                                effects, others will have difficulties and experience traumatic stress reactions. There may be a reluctance to trust others including service providers. Worse, systems as currently designed may actually cause or exacerbate
+                                trauma.</p>
+                            <p><br></p>
+                            <p>Trauma-informed care is grounded in an understanding of the neurological, biological, psychological, and social impact of trauma on the person as well as the heavy burden those effects can have on individuals, families, and
+                                communities. A trauma-informed approach can be implemented in any type of service setting or organization. It is distinct from trauma-specific interventions or treatments that are designed specifically to address the consequences
+                                of trauma and to facilitate healing.</p>
+                            <p><br></p>
+                            <p><strong>Impact of Trauma</strong></p>
+                            <p>For some people, reactions to a traumatic event are temporary, whereas others have enduring physical and mental health consequences (e.g., complex post-traumatic stress disorder, life functioning issues, biopsychosocial impairment,
+                                and medical problems). Others may not meet established criteria for specific disorders but can still experience trauma-related symptoms. In addition, individuals in relationship with the survivor may experience vicarious
+                                trauma and/or compassion fatigue. For that reason, even if an individual does not meet diagnostic criteria for trauma-related disorders, it is important to recognize that trauma may affect him or her in significant ways.</p>
+                            <p><br></p>
+                            <p><strong>Method</strong></p>
+                            <p>A program, organization, or system that is trauma-informed is one that creates a contextual milieu and a culture of delivering care and services to people impacted by trauma in a way that:</p>
+                            <ol>
+                                <li>
+                                    <p>Realizes the impacts of trauma and understands potential paths for recovery;</p>
+                                </li>
+                                <li>
+                                    <p>Recognizes the signs and symptoms of trauma and vicarious trauma in clients, families, staff, and others involved with the system;</p>
+                                </li>
+                                <li>
+                                    <p>Responds by fully integrating knowledge about trauma into policies, procedures, and practices; and,</p>
+                                </li>
+                                <li>
+                                    <p>Seeks to actively mitigate re-traumatization and encourage self-care.</p>
+                                </li>
+                            </ol>
+                            <p><br></p>
+                            <p><strong>Key Principles</strong></p>
+                            <p>A trauma-informed approach reflects adherence to key principles that set forth a methodology and terminology rather than a prescribed set of practices or procedures. These principles can be implemented across all types of settings
+                                although terminology and application may be setting or sector specific:</p>
+                            <ol>
+                                <li>
+                                    <p>Safety – Ensuring physical and emotional safety, through better communication,</p>
+                                </li>
+                                <li>
+                                    <p>Trustworthiness and Transparency – Making tasks clear, maintaining boundaries,</p>
+                                </li>
+                                <li>
+                                    <p>Choice – Prioritizing consumer choice and control,</p>
+                                </li>
+                                <li>
+                                    <p>Collaboration and Mutuality – Sharing power with consumers, and,</p>
+                                </li>
+                                <li>
+                                    <p>Empowerment -- Skill-building, acknowledging and strengthening resilience.</p>
+                                </li>
+                            </ol>
+                            <p><br></p>
+                            <p><strong>Culture and Trauma</strong></p>
+                            <p>It is critical to understand that the way in which people perceive or react to trauma can be influenced by their culture (e.g. gender, age, ability, ethnicity, race, religion, sexual orientation, geographical location, socio-economic
+                                status, family group, immigration status) or the historic, systemic or intergenerational transmission of trauma as well as the intersectionality of these factors.</p>
+                            <ul>
+                                <li>
+                                    <p>Rates of traumatic stress are disproportionately high among diverse and vulnerable populations and cultures.</p>
+                                </li>
+                                <li>
+                                    <p>Some traumas may have greater impact on particular populations because those traumas represent a significant disruption to their cultural practices or ways of life.</p>
+                                </li>
+                                <li>
+                                    <p>Culture can influence which events are perceived as traumatic, how an individual interprets and assigns meaning to the trauma.</p>
+                                </li>
+                                <li>
+                                    <p>Culture influences how people convey traumatic stress through behavior, emotions, and thinking. It can also provide a source of strength, unique coping strategies, and specific resources.</p>
+                                </li>
+                            </ul>
+                            <p><br></p>
+                            <p><strong>Outcomes</strong></p>
+                            <ul>
+                                <li>
+                                    <p>Studies have revealed trauma-informed service settings have better outcomes including a demonstrated improvement in daily functioning and a decrease in trauma reaction, substance use, and mental health symptoms. Trauma-informed
+                                        services for children lead to higher self-esteem, improved relationships and increased safety.</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p>Trauma-informed services may have a positive effect on housing stability and can lead to decreased utilization of crisis-based services.</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p>Trauma-informed, integrated services are cost-effective; providing improved outcomes without substantial increases in costs.</p>
+                                </li>
+                                <li>
+                                    <p>Providers report positive outcomes in their organizations, noting more collaboration within and outside their agencies, improved staff morale, fewer negative events, and more effective services.</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p>Consumers respond well to trauma-informed services reporting an increased sense of safety, better collaboration with staff, and allowing them a more significant “voice.”&nbsp;&nbsp;&nbsp;</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p><span style="font-size:20px"><strong>NPEIV POLICY STATEMENT ON CORPORAL PUNISHMENT OF CHILDREN</strong></span></p>
+                            <p>​</p>
+                            <p><em>National Partnership to End Interpersonal Violence (NPEIV)</em></p>
+                            <p>October 2, 2015</p>
+                            <p><br></p>
+                            <p>The National Partnership to End Interpersonal Violence (NPEIV) calls for the elimination of all forms of corporal punishment of children. Corporal punishment is defined as the use of physical force for the purpose of correction
+                                or control of the child’s behavior with the intentional or incidental result of causing pain or discomfort to the child. Physical force in the form of hitting is often referred to as spanking, swatting, whipping, popping,
+                                smacking, slapping, or paddling – all used in the name of discipline. NPEIV is committed to ending all hitting of children.</p>
+                            <p><br></p>
+                            <p>NPEIV professionals are in a strategic position to educate parents as well as individuals who work with children and families about the risk factors associated with the use of corporal punishment. Effective parenting does not
+                                require physical punishment. Parents need to be informed about the harmful effects of corporal punishment, educated about age-specific expectations for child skills and behavior, and taught and encouraged to use parenting
+                                approaches that teach children limit setting, self-regulation, and respect for self and others. Appropriate discipline can assist children in developing healthy emotional balance, the ability to tolerate and regulate frustration
+                                and tension, and provide the foundation to behave in socially acceptable ways. Children need consistent and age-appropriate guidance based in support, nurturance, and positive regard by all adults in role-model positions.
+                                Open communication between children and every adult in their lives is essential to helping children learn limit setting, acceptable behavior, responsibility, and adult self-discipline. NPEIV advocates for discipline practices
+                                that will develop caring, responsible, and self-disciplined individuals and recommends parenting strategies that will nurture, teach, and guide children and adolescents while supporting and promoting the child’s dignity.</p>
+                            <p><br></p>
+                            <p>The United Nations Convention on the Rights of the Child (UN CRC), adopted in November 1989, specifies that all governments who ratified the Convention must take appropriate measures to protect children from all forms of physical
+                                or mental violence, including corporal punishment (1). The UN CRC strongly supports parents providing nonviolent guidance and direction to their children. In schools, administrators and teachers are to take into account
+                                the child’s “human dignity” and eliminate any discipline practices that may cause physical or mental harm. Globally, over forty-six countries have national laws banning any form of corporal punishment of children, even
+                                within their homes.&nbsp;Hitting family members other than children, as well as hitting acquaintances or strangers, is considered assault and a crime. Children, too, have the right and need to be afforded the same consideration.</p>
+                            <p><br></p>
+                            <p>Therefore, in a commitment to promote quality safe and nurturing environments where children can grow and develop to their full potential, NPEIV calls for the elimination of all forms of corporal punishment of children in homes,
+                                schools, and all settings throughout society. NPEIV pledges an active role to inform our allied professionals, policy makers, and the general public about the risk factors associated with corporal punishment of children.</p>
+                            <p><br></p>
+                            <p>(1) Committee on the Rights of the Child (2006). General Comment No. 8 (2006): The right of the child to protection from corporal punishment and/or cruel or degrading forms of punishment (articles 1, 28(2) and 37). Geneva,
+                                Switzerland: United Nations.</p>
+                            <p><br></p>
+                            <p><span style="font-size:12px">References and citations on the prevalence and effects of corporal punishment are available upon request.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p><span style="font-size:20px"><strong>Sexual Violence/Abuse Policy Statement</strong></span></p>
+                            <p><br></p>
+                            <p><em>National Partnership to End Interpersonal Violence (NPEIV)</em></p>
+                            <p>August 2015</p>
+                            <p><br></p>
+                            <p>The National Partnership to End Interpersonal Violence (NPEIV) is committed to ending all forms of sexual violence against all people across the lifespan. The NPEIV recognizes that the response to sexual violence in law and
+                                society has been pervasively and disproportionately ineffective. Therefore, NPEIV is committed to (1) providing leadership to identify the root causes of such ineffective response and recommend legal and policy reforms
+                                along with strategies for implementation via legislative, judicial and executive branch actions at the state and federal level and (2) collaborating with the diverse group of disciplines and stakeholders at all levels to
+                                devise complimentary primary, secondary, and tertiary prevention programs and policies to eliminate sexual violence.[1]</p>
+                            <p><br></p>
+                            <p>Sexual violence is both a human and civil rights issue. The impact of sexual violence is felt in all communities by survivors of all ages, classes, and genders. The secrecy and shame that are common aftereffects of sexual assault
+                                contribute to a well acknowledged lack of reporting amongst all victims. Therefore, it is difficult to accurately state how many people are victims of sexual violence, and who the perpetrators are. What can be stated with
+                                confidence is that an unconscionable number of children and adults experience sexual violence.</p>
+                            <p><br></p>
+                            <p>The aftermath of sexual violence can affect all areas of a survivor’s life including, but not limited to, interpersonal relationships, reproductive, physical and mental health, as well as the overall sense of safety and spiritual
+                                well-being. The cultural and historical experiences of different groups also play a significant role in the sexual violence narrative. As such, it is important to recognize how institutional racism and gender bias have
+                                exacerbated the experiences of survivors from certain groups (such as women and ethnic minority and LGBTQ communities). Adequately addressing these impacts must be a part of developing a holistic, trauma-informed, and systemic
+                                approach to reducing the epidemic levels of sexual violence in our society.</p>
+                            <p><br></p>
+                            <p>“Sex” and “gender” based violence can be redressed in a variety of legal venues, including criminal and civil court. It can also constitute a “civil rights” violation and be addressed not only in criminal and civil court, but
+                                also in grievance procedures, especially in connection with employment and education. Many states also have civil rights statutes and constitutional provisions that extend the scope of legal protection to all areas of public
+                                life, and in some jurisdictions, to private life as well.</p>
+                            <p><br></p>
+                            <p>Sexual violence is often the subject of politicized controversies, fueled by misconceptions about gender norms and the underlying reasons and motivations behind perpetration. These misconceptions perpetuate harmful ideas about
+                                sexual violence and exacerbate distrust between groups, making partnerships among key stakeholders in the fight to end sexual violence difficult to establish and maintain. The degree of tolerance for sexual violence in
+                                the cultural environment deters reporting and inhibits legal redress in civil and criminal courts, as well as in military, educational, tribal, and workplace settings. In turn, society’s awareness and understanding of the
+                                problem as a public concern is diminished, health and safety are compromised, and survivors are less likely to achieve justice and/or obtain necessary support and treatment.</p>
+                            <p><br></p>
+                            <p><strong>Fundamental Principles:</strong></p>
+                            <p><br></p>
+                            <p>The NPEIV approach to sexual violence policy evolves from the fundamental principles of autonomy, equality, voice, access to justice, access to services, public health and safety, and prevention. Each of these principles is
+                                defined below and will serve as the NPEIV guideposts as we seek to identify laws and policies that best promote these principles or, conversely, prevent these principles from being realized in society.</p>
+                            <p><br></p>
+                            <p><strong>Autonomy:&nbsp;</strong></p>
+                            <p>The freedom of an individual to make un-coerced, informed, intelligent, and voluntary decisions, and to have laws and policies that prioritize and promote concepts of personal autonomy and bodily integrity as fundamental human
+                                and constitutional rights.</p>
+                            <p><br></p>
+                            <p><strong>Gender Equality:&nbsp;</strong></p>
+                            <p>Gender equality in the context of sexual violence means such violence is redressed in all legal venues at a rate and in a manner equal to the redress of other forms of violence, free from unjust skepticism and stereotypes,
+                                and under exactly the same substantive and procedural legal standards and protections as violence that occurs on the basis of other protected class categories such as race and national origin.</p>
+                            <p><br></p>
+                            <p><strong>Voice:&nbsp;</strong>&nbsp;&nbsp;&nbsp;</p>
+                            <p>Voice means having the right to be heard in all legal venues whenever a victim’s substantive or procedural rights are threatened or violated, whether by the state or private actor, and irrespective of established precedent
+                                providing such right to be heard.</p>
+                            <p><br></p>
+                            <p><strong>Access to Justice:</strong>&nbsp;</p>
+                            <p>Access to justice means having an enforceable right to seek redress of all harms related to sexual violence in all legal venues, including a right to judicial review.</p>
+                            <p><br></p>
+                            <p><strong>Access to Services:&nbsp;</strong></p>
+                            <p>Access to services means having an enforceable right to receive trauma-informed treatment, advocacy, and support related to all harm associated with sexual violence.</p>
+                            <p><strong>Public Health and Safety:&nbsp;</strong></p>
+                            <p>Current responses to sexual violence typically focus on intervention after an assault has occurred. Public health approaches to sexual violence direct our efforts on prevention of sexual violence before it is perpetrated. Public
+                                health approaches also move beyond ensuring the health of individuals, to the health and safety of an entire population by addressing risk and protective factors related to all levels of social ecology.</p>
+                            <p><br></p>
+                            <p><strong>Prevention:</strong>&nbsp;</p>
+                            <p>Prevention focuses on all efforts (primary, secondary, tertiary) intended to stop the perpetration of unhealthy, harmful, dangerous, and illegal behavior and acts, as well as victimization and re-victimization by others. The
+                                prevention of sexual violence involves understanding both risk and protective factors related to the promotion, inhibition, and elimination of its perpetration</p>
+                            <p><br></p>
+                            <p><span style="font-size:14px">[1] This policy statement is intended to provide an overarching framework from which to view all types of sexual violence.&nbsp; Additional position papers addressing specific types of sexual violence will be written separately. The position papers will include background information, statistics, and citations upon which this policy statement is based.&nbsp;</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p style="text-align:start"><span style="font-size:20px"><strong><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif">Family Court Crisis Policy Statement</span></strong>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif">&nbsp;</span></span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="font-size:16px"><em>National Partnership to End Interpersonal Violence (NPEIV)</em></span></span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:14px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="font-size:14px">January 1, 2014</span></span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f">&nbsp;</span></span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">Introduction/Background:</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">Situations involving domestic violence, allegations of child maltreatment and child custody, can be complex. There are many factors to consider, including prioritizing child safety over parental rights if parents are abusive.</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">Family courts (also known as divorce, domestic, probate) are state-based and there is variation across states regarding how cases are handled. Nevertheless, NPEIV’s public policy action team has identified three key areas of focus that raise many questions that affect all states. We are particularly concerned about the rights of children because they generally lack individual standing to be heard. We believe the status of children should be expanded to ensure protection of their rights to safety.</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">Children are entitled to many of the same Constitutional rights granted to adults, including, but not limited to, freedom from cruel/unusual punishment, involuntary servitude, governmental restraints, and the right to bodily integrity.</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">NPEIV's Public Policy Action Team has identified the following public policy statements:</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                            <ol>
+                                <li style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">To end interpersonal violence across the lifespan, children must be safe in their homes. Research demonstrates that long term harm is done to children who live with and/or witness domestic violence and sexual abuse. The outcomes include physical injuries, behavioral disorders, traumatic reactions, and often lifetime illnesses, along with a reduced life expectancy. NPEIV is committed to federal legislation to ensure that child safety from violence and abuse is the first and highest priority in all state and federal court determinations.</span></span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </li>
+                                <li style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">&nbsp;An unknown number of children are placed in the sole or joint custody of alleged domestic violence perpetrators or child abusers. NPEIV supports the enactment of federal legislation to establish an effective oversight mechanism, such as a Violence Against Children division within the Department of Justice, in collaboration with the Department of Health and Human Service’s Administration of Children and Families, to review high profile cases, in which children have been placed with alleged perpetrators of violent or abuse crimes, as well as statues and policies that may lead to children being placed in situations that have potential risks. The purpose of such an oversight entity would be to assure Federal monies are not spent increasing harm to children. A centralized entity would serve as a repository of longitudinal data on incidence and prevalence rates among children who are ordered to live with alleged perpetrators. This oversight entity would have responsibility for establishing best practices to ensure the prioritization of a thorough law enforcement and child protective services investigations, and child safety during all investigations and determinations related to children.</span></span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </li>
+                                <li style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">The third issue is federal funding that negatively impacts child safety. For example, child support legislation has resulted in abusers seeking and gaining sole or joint custody to avoid paying child support. Federal grants and legislation should be review to make sure that federal funding priorities ensure child safety and due process. Grants can offer incentives to states to disconnect child support from parenting time, to presume children of a certain age will be allowed to testify in legal proceedings in the absence of clear and convincing proof that testifying will cause them harm, to utilize the civil preponderance of evidence standard of proof to ensure child safety, and to lower the standard of judicial review in cases where allegations of abuse are made such that the appellate court reviews the matter "de novo" or under a "plain error" rule rather than "abuse of discretion".</span></span>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </li>
+                            </ol>
+                            <p style="text-align:start"><span style="font-size:18px"><span style="font-family:Arial,&quot;ｍｓ ｐゴシック&quot;,&quot;ms pgothic&quot;,돋움,dotum,helvetica,sans-serif"><span style="color:#2b143f"><span style="color:#292929"><span style="font-size:medium">Given that the mission of the NPEIV is to focus on the impact of trauma across the life-span, we believe that the focus of child custody dispute cases should integrate the concepts of trauma- informed practices to address decisions that impact children's safety and development. Models should be reviewed in various states that represent best practice approaches to family court procedures and decision-making, and these findings should be used in judicial training and public awareness approached.</span></span>
+                                </span>
+                                </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p><span style="font-size:20px"><strong>Connecticut School Shooting Position Statement</strong></span></p>
+                            <p><br></p>
+                            <p><em>Interdisciplinary Group on preventing School and Community Violence</em></p>
+                            <p>December 2012</p>
+                            <p><br></p>
+                            <p>The undersigned school violence prevention researchers and practitioners and associated organizations wish to comment on the tragic acts of violence at Sandy Hook Elementary School, which have shaken the nation, and express
+                                our deepest condolences to families and loved ones of the victims and the entire Newtown community. We all share a common priority: Keeping our children safe. We need to come together in our communities to share our grief
+                                and talk about how we can move forward in light of this tragic event. This document updates the School Shootings Position Statement that was disseminated nationally following the tragic school-related shootings of 2006.</p>
+                            <p><br>It is important to emphasize that our concern is not limited to schools. The Connecticut tragedy is referred to as a school shooting, but it is better described as a shooting that took place in a school. It is also relevant
+                                to consider the hundreds of multiple casualty shootings that occur in communities throughout the United States every year. Few of them occur in schools, but of course are especially tragic when they occur. Yet children
+                                are safer in schools than in almost any other place, including for some, their own homes.</p>
+                            <p><br>While schools are of paramount concern, the location of a shooting is not its most important feature, although it is the most visible. From the standpoint of prevention, what matters more is the motivation behind a shooting.
+                                It is too soon to draw conclusions about this case, but in every mass shooting we must consider two keys to prevention: (1) the presence of severe mental illness and/or (2) an intense interpersonal conflict that the person
+                                could not resolve or tolerate.</p>
+                            <p><br>Inclinations to intensify security in schools should be reconsidered. We cannot and should not turn our schools into fortresses. Effective prevention cannot wait until there is a gunman in a school parking lot. We need
+                                resources such as mental health supports and threat assessment teams in every school and community so that people can seek assistance when they recognize that someone is troubled and requires help. For communities, this
+                                speaks to a need for increased access to well integrated service structures across mental health, law enforcement, and related agencies. We must encourage people to seek help when they see that someone is embroiled in an
+                                intense, persistent conflict or is deeply troubled. If we can recognize and ameliorate these kinds of situations, then we will be more able to prevent violence.</p>
+                            <p><br>These issues require attention at the school and community levels. We believe that research supports a thoughtful approach to safer schools, guided by four key elements: Balance, Communication, Connectedness, and Support,
+                                along with strengthened attention to mental health needs in the community, structured threat assessment approaches, revised policies on youth exposure to violent media, and increased efforts to limit inappropriate access
+                                to guns and especially, assault type weapons...</p>
+                            <p>To read the rest of this statement, please&nbsp;<u><a data-cke-saved-href="/files/Pol_stat.pdf" href="/files/Pol_stat.pdf" target="_blank">click here.</a></u></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row layout_row">
+            <div class="layout col-sm-12 ">
+                <div class="layout_inner ui-droppable">
+                    <div class="text_widget">
+                        <div class="text_widget_content" style="position: relative;">
+                            <p><span style="font-size:20px"><strong>Statute of Limitations Policy Statement</strong></span></p>
+                            <p><br></p>
+                            <p><em>National Partnership to End Interpersonal Violence (NPEIV)</em></p>
+                            <p>August 1, 2012</p>
+                            <p><br></p>
+                            <p>The&nbsp;National Partnership to End&nbsp;Interpersonal&nbsp;Violence Across the Lifespan (NPEIV) supports the elimination of the civil and criminal statutes of limitation for child sexual abuse. In recognition of the numerous
+                                barriers that survivors of child sexual abuse have to reporting the abuse, perpetrators and institutions that failed to prevent the abuse should be held criminally and civilly accountable at any time. NPEIV further supports
+                                the retroactive elimination of civil statutes of limitation for child sexual abuse. Allowing survivors to file civil lawsuits for past abuse can identify perpetrators who may still be abusing children, and thus protecting
+                                children from further abuse.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+
+
+
+
+    <div class="cke_screen_reader_only cke_copyformatting_notification">
+        <div aria-live="polite"></div>
+    </div>
+
+</body>
+
+</html>

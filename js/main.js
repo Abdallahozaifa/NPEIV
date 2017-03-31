@@ -11,6 +11,8 @@ $(document).ready(function() {
             getAdminNav();
         }
     });
+
+
 });
 
 // Resets the onClick listeners for the navigation accordian
@@ -50,4 +52,31 @@ function getAdminNav() {
         $('#nav-root').append(data);
         reinstanceNav();
     });
+}
+
+
+function loadEditor() {
+    $.get('/admin/editor', function(data) {
+        $('body').append(data);
+        console.log();
+    });
+}
+
+// Dynamicaly load javascript form server
+function loadScript(path, callback) {
+    $.getScript(path, function(data) {
+        callback(data);
+    });
+}
+
+
+function search_bar() {
+    
+    var a = document.getElementById('f_search_bar');
+    a.addEventListener('submit',function(e) {
+        e.preventDefault();
+        var b = document.getElementById('searchBar').value;
+        window.location.href = 'https://npeiv-webapp-abdallahozaifa.c9users.io/#q='+ b + "&*";
+    });
+    
 }
