@@ -23,20 +23,6 @@ var upload = multer({
  */
 module.exports = function(app, fs, navigation, authentication, DataStoreGate, rootPath ) {
 
-
-    app.post('/post/pageMgmt/getPageList', function(req, res) {
-        // Extracet post data
-        var adminUsername = req.query['adminUsername'] || req.body['adminUsername'];
-        var tempkey = req.query['tempkey'] || req.body['tempkey'];
-
-        // Auth. user
-        authentication.authenticateUserAdmin(adminUsername, tempkey, function(valid) {
-            if (valid) {
-                // Read navigation object from datastore
-            }
-        });
-    });
-
     // TODO
     app.post('/post/pageMgmt/SavePage', function(req, res) {
         // Extracet post data
@@ -67,18 +53,24 @@ module.exports = function(app, fs, navigation, authentication, DataStoreGate, ro
     // TODO
     app.post('/post/pageMgmt/DeletePage', function(req, res) {
         // Extract post data
-        var username = req.query['username'] || req.body['username'];
+        var username = req.query['adminUsername'] || req.body['adminUsername'];
         var tempkey = req.query['tempkey'] || req.body['tempkey'];
-        var pageName = req.query['pageName'] || req.body['pageName'];
+        var pageName = req.query['pageName'] || req.body['pageName'] + '.html';
 
         // Auth. user
         authentication.authenticateUserAdmin(username, tempkey, function(valid) {
             if (valid) {
                 // Delete page
-                navigation.deletePage(pageName, function(err, data) {
-
+                navigation.deletePage(pageName, function(err) {
+                    if (!err) {
+                         res.send(JSON.stringify({Result:"OK"}));
+                    } else {
+                        res.send(JSON.stringify({Result:"ERROR", Message: err}));
+                    }
                     //res.send(msg);
                 });
+            } else {
+                res.send(JSON.stringify({Result:"ERROR", Message: "Auth error"}));
             }
         });
     });

@@ -17,51 +17,59 @@
     <!-- Font Awsome -->
     <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
+    <!-- jQueryUI -->
+    <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link href="/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+
+
+
     <!-- Style Sheets -->
     <link rel='stylesheet' href='/css/normalize.css' type='text/css' />
     <link href='/css/page.css' rel='stylesheet'>
     <link href='/css/colors.css' rel='stylesheet'>
+    <link href='/css/navigator.css' rel='stylesheet'>
 
     <!-- JavaScript -->
     <script type='text/javascript' src='/js/std.js'></script>
     <script type='text/javascript' src='/js/qLayout.jquery.js'></script>
 
-    <!-- jQueryUI -->
-    <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <link href="/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/js/main.js"></script>
 
     <!-- jTable -->
     <script src="/js/jtable.2.4.0/jquery.jtable.min.js"></script>
     <link href="/js/jtable.2.4.0/themes/metro/purple/jtable.min.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 
 <body class='b_purple'>
     <!-- Header+Nav Bar -->
     <nav id='main_header_bar' class='b_white c_dark noselect'>
-        <h1 class='main_header_item font_big1 float_left' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV
-        </h1>
-
-        <div id='dropdown_navigation_bar_icon' class='main_header_item float_right font_big fa fa-bars'>
-            <div class='font_small'>Menu</div>
-
-            <!-- Donate Button -->
+        <div id='open_menu' onClick='toggleNavigator();' class='inline-block font_big fa fa-bars text-center'>
+            <p class='font_small'>Menu</p>
         </div>
+
+        <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+
         <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
             <div class='font_small'>Donate</div>
         </div>
 
         <!-- Search Bar -->
+
         <form class='main_header_item float_right font_big'>
             <input class='searchBar' type="text" name="search" placeholder="Search...">
         </form>
+
     </nav>
+
+    <div id='navigator_holder' class='navigator_holder--hidden'></div>
 
     <script type="text/javascript">
         $(document).ready(function() {
             $('#userTable').jtable({
                 title: 'NPEIV Users',
+                sorting: true,
                 actions: {
                     listAction: '/post/userMgmt/getAllUsers?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
                     createAction: '/post/userMgmt/newUser?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
@@ -98,7 +106,10 @@
                     privlageLevel: {
                         title: 'Privilege',
                         type: 'radiobutton',
-                        options: {1:'Member', 3:'Admin'},
+                        options: {
+                            1: 'Member',
+                            3: 'Admin'
+                        },
                         width: '1%'
                     }
                 }
@@ -134,15 +145,44 @@
             <!-- 100 layout -->
             <div class="layout col-sm-12 ">
                 <div class="layout_inner ui-droppable ui-sortable ui-sortable-disabled">
-                    <h2>User Management</h2>
-                    <div>
-                        <button onClick="getUsers()">Get Users</button>
+                    <div class="text_widget">
+                        <div class="text_widget_content cke_focus" style="position: relative;">
+                            <h1><img alt="" data-cke-saved-src="/img/NPEIV.jpg" src="/img/NPEIV.jpg" style="height: 160px; width: 174px; float: left;"><strong>National Partnership to End Interpersonal Violence Across The Lifespan</strong></h1>
+                        </div>
+
+                        <h2>User Management</h2>
+                        <p>Here you can add, edit, or delete users on the system</p>
+                        <div>
+                            <button onClick="getUsers()">Get Users</button>
+                        </div>
+                        <br>
+                        <div id='userTable'></div>
+
+
                     </div>
-                    <br>
-                    <div id='userTable'></div>
+
                 </div>
             </div>
         </div>
+    </div>
+    <br>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        NPEIV Co-chairs:<br /> Dr. Robert Geffner, Ph.D., ABN, ABPP <br /> Founding Co-chair: Dr. Jacquelyn White, Ph.D.<br /> <br /> Telephone : 858-527-1860 ext. 4042 <br /> Fax : 858-527-1743 <br /> Email : ivatnpeiv@alliant.edu
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        The Institute on Violence, Abuse and Trauma (IVAT) <br /> serves as the fiscal and logistical agent of NPEIV. <br /> <br /> © 2017 by NPEIV, All rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 

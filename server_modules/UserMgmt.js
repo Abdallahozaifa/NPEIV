@@ -43,7 +43,8 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          title: req.body['title'] || req.query['title'],
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
-         privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel']
+         privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
+          actionTeams:  req.body['actionTeams'] || req.query['actionTeams'] || []
       });
 
       // Auth. user
@@ -76,6 +77,58 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
             }));
          }
       });
+   });
+
+   /** POST - for a new User to create themselves
+    *  Paramaters: (all mandaotry unless otherwise)
+    *      username - the username of the new user
+    *      password - password for the new user (optional
+    *      email - the new usera email (optional)
+    *      preFix - the new user name prefix (optional)
+    *      Fname - the new user first name (optional)
+    *      Lname - the new user last name (optional)
+    *      title - the tile of the new user (optional)
+    *      privlageLevel - the new user privlage leve (optional) (default = 1) (memeber = 1, admin = 3)
+    *  Response Structure: (JSON)
+    *      Result: "OK" || "ERROR"
+    *      Message: [error]
+    *      Record: [new user object]
+    */
+   app.post('/post/userMgmt/newUserTemp', function(req, res) {
+
+      // Extract new user data (either body or in path string query)
+      var NEW_USER = new UserObject.UserObject({
+         username: req.body['username'] || req.query['username'],
+         password: req.body['password'] || req.query['password'],
+         email: req.body['email'] || req.query['email'],
+         preFix: req.body['preFix'] || req.query['preFix'],
+         title: req.body['title'] || req.query['title'],
+         Fname: req.body['Fname'] || req.query['Fname'],
+         Lname: req.body['Lname'] || req.query['Lname'],
+         privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
+         actionTeams:  req.body['actionTeams'] || req.query['actionTeams'] || []
+      });
+
+
+      // Add user to datastore
+      DataStoreGate.addObjToStore(NEW_USER, "User", NEW_USER.username, function(err, data) {
+         if (err) {
+            // Send Back error with message
+            res.send(JSON.stringify({
+               Result: "ERROR",
+               Message: err
+            }));
+         }
+         else {
+            // Send back ok, with new object
+            res.send(JSON.stringify({
+               Result: "OK",
+               Record: data
+            }));
+         }
+
+      });
+
    });
 
    /** POST - for an admin to delete a new user
@@ -162,7 +215,8 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          title: req.body['title'] || req.query['title'],
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
-         privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel']
+         privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
+         actionTeams:  req.body['actionTeams'] || req.query['actionTeams']
       };
 
       // Auth. user
@@ -350,13 +404,14 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
 
       // Extract new user data (either body or in path string query) 
       var user_data = {
-         email: req.body['email'] || req.body['email'],
+         username: username,
+         email: req.body['email'] || req.query['email'],
          preFix: req.body['preFix'] || req.query['preFix'],
          title: req.body['title'] || req.query['title'],
          Fname: req.body['Fname'] || req.query['Fname'],
-         Lname: req.body['Lname'] || req.query['Lname']
+         Lname: req.body['Lname'] || req.query['Lname'],
+         actionTeams:  req.body['actionTeams'] || req.query['actionTeams']
       };
-
       // Auth. user
       Authentication.authenticateUser(username, tempkey, function(valid) {
          // A user can only edit their own tivail information
@@ -377,6 +432,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
                   user.title = user_data.title;
                   user.Fname = user_data.Fname;
                   user.Lname = user_data.Lname;
+                  user.actionTeams = user_data.actionTeams;
 
                   // Update object in datastore
                   DataStoreGate.updateObjFromStore("User", user_data.username, user, function(err, data) {
@@ -505,7 +561,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
                   // TODO (email == user.email)
                   // If the email provied matches the one stored
                   // Generate a new 16 length password 
-                  var new_password =  randomString.generate(16);
+                  var new_password = randomString.generate(16);
                   user.password = new_password;
 
                   // Save updated user object
@@ -522,7 +578,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
                         Email.sendMail("noreply-NPEIV", "NPEIV Password Reset", [{
                            Email: user.email
                         }], "New Password - Please login with this password to reset your password:\n" + new_password);
-                        console.log(new_password);
+                        //console.log(new_password);
                         // Send back ok, with new object
                         res.send(JSON.stringify({
                            Result: "OK"
@@ -547,6 +603,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
       }
 
    });
+
 
    return this;
 }

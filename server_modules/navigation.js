@@ -59,11 +59,17 @@ module.exports = function(fs, app, DatastoreGate, rootPath) {
     }
 
     this.deletePage = function(name, callback) {
-        // Get nav obj from datastore
-
         // Find and delete page from nav
-
-        // callback(err, data)
+        fs.unlink(rootPath + '/html/pub/' + name, function(err,data){
+            // callback(err)
+            if(!err) {
+                callback(false);
+            } else {
+                callback(err);
+            }
+        });
+        
+       
     }
 
     this.addPageGroup = function(name, parent, callback) {

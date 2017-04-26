@@ -3,7 +3,7 @@ module.exports = function() {
 
    // Instantiate a datastore client
    var datastoreClient = datastore({
-      projectId: 'npeiv-webapp',
+      projectId: 'mindful-syntax-162801',
       keyFilename: __dirname + '/keyfile.json'
    });
 
@@ -66,7 +66,7 @@ module.exports = function() {
                   return callback(err);
                }
                //console.log(objKey);
-               console.log(kind + ": " + primKey + ' deleted successfully.');
+               console.log(kind + ":" + primKey + ' (deleted successfull)');
                return callback(false);
             });
 

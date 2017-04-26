@@ -21,7 +21,7 @@ module.exports = function() {
         function testEmail(text) {
             var email = {};
             email['FromName'] = fromName;
-            email['FromEmail'] = 'Abdallahozaifa19527@gmail.com';
+            email['FromEmail'] = 'npeiv.org@gmail.com';
             email['Subject'] = subject;
             email['Recipients'] = receipents;
             email['Text-Part'] = emailBody;
