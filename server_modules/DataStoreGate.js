@@ -82,22 +82,25 @@ module.exports = function() {
     * @return {function} callback(error, data) - callback function
     */
    this.getObjFromStore = function(kind, primKey, callback) {
-      var objKey = datastoreClient.key([kind, primKey]);
 
+      var objKey = datastoreClient.key([kind, primKey]);
+      console.log(objKey);
+      //console.log(JSON.stringify(datastoreClient));
       datastoreClient.get(objKey, function(err, entity) {
-         if (entity != null) {
-            // If the object is found in the datastore
-            return callback(false, entity); // Callback with entity, and a null error message
-         } else {
+
+         if (!err) {
+            return callback(false, entity.data); // Callback with entity, and a null error message
+         }
+         else {
             // If the object was not found
-            // console.log(kind + ": " + primKey + ' does not exist.');
+            console.log(kind + ": " + primKey + ' does not exist.');
             return callback("Error: entity not found-> " + kind + " : " + primKey); // Callback with error message
          }
-          
+
       });
    };
 
-   /* !!!! TODO NEEDS REWORK!!!!*/
+
    /**
     * Updates an object from the datastore
     * @param {String} kind - the type of data being added to the datastore
@@ -142,13 +145,20 @@ module.exports = function() {
       //.start(token); // amt
 
       datastoreClient.runQuery(q, (err, entities, nextQuery) => {
+
          // Callback (err,data)
          if (err) {
             return callback(err, null); // Callback with error
          }
          else {
             const hasMore = nextQuery.moreResults !== datastoreClient.NO_MORE_RESULTS ? nextQuery.endCursor : false;
-            return callback(null, entities); // Callback with data
+            var entitiesPrime = [];
+            for (var i = 0; i <  entities.length; i++) {
+               
+               entitiesPrime.push(entities[i].data);
+            }
+            console.log(entitiesPrime);
+            callback(null, entitiesPrime); // Callback with data
          }
 
       });
@@ -169,5 +179,6 @@ module.exports = function() {
     });
 });
   */
+
    return this;
 };

@@ -54,13 +54,19 @@
                     location: $('#location').val(),
                 }, function(data) {
                     var dataP = JSON.parse(data);
+                    $('#name_of_event').val("");
+                    $('#number1').val("");
+                    $('#number2').val("");
+                    $('#datepicker').val("");
+                    $('#location').val("");
                     if (dataP.Result == "OK") {
                         swal(
                             'Success',
                             'Your event is now pending',
                             'success'
                         );
-                    } else {
+                    }
+                    else {
                         swal(
                             'Error',
                             'Something went wrong',
@@ -69,6 +75,7 @@
                     }
                     console.log(data);
                 });
+
             });
 
         });
@@ -83,7 +90,7 @@
                 <p class='font_small'>Menu</p>
             </div>
 
-            <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+            <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">National Partnership</h1>
 
             <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
                 <div class='font_small'>Donate</div>

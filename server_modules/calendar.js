@@ -27,25 +27,30 @@ module.exports = function(root) {
         if (data.time2.search(/^(0?[1-9]|1[012])(:[0-5]\d) [APap][mM]$/) == 0) {
           parsedTime2 = data.time2;
         }
-      } catch(e) {
+      }
+      catch (e) {
         // Ignore
       }
 
-
+      var date1 = new Date(data.date + ' ' + parsedTime1);
+      date1.setHours(date1.getHours() + 4);
+      var date2 = new Date(data.date + ' ' + parsedTime2);
+      date2.setHours(date2.getHours() + 4);
+    
       var event = {
         'summary': data.name,
         'location': data.location,
         'description': data.description,
         'start': {
-          'dateTime': new Date(data.date + ' ' + parsedTime1),
-          'timeZone': 'America/Los_Angeles',
+          'dateTime': date1,
+          'timeZone': 'America/New_York',
         },
         'end': {
-          'dateTime': new Date(data.date + ' ' + parsedTime2),
-          'timeZone': 'America/Los_Angeles',
+          'dateTime': date2,
+          'timeZone': 'America/New_York',
         },
         'recurrence': [
-          'RRULE:FREQ=DAILY;COUNT=2'
+          'RRULE:FREQ=DAILY;COUNT=1'
         ],
         'reminders': {
           'useDefault': false,

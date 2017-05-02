@@ -6,36 +6,37 @@ const bodyParser = require("body-parser");
 const fs = require('fs');
 const randomString = require("randomstring"); // Random string genorator for temporory key genoration
 const crypto = require('crypto');
+const glob = require("glob");
 
 // Setting up app, to user body parser for POST requests
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
+app.enable('trust proxy');
 // Server consts
 const root = __dirname;
 
 // Custom Server Modules
-var DataStoreGate = require('./server_modules/DataStoreGate.js')(); // The comm. port to the datastore
+const DataStoreGate = require('./server_modules/DataStoreGate.js')(); // The comm. port to the datastore
 
-var Email = require('./server_modules/Email.js')(); // TODO
+const Email = require('./server_modules/Email.js')(); // TODO
 
-var Navigation = require('./server_modules/navigation.js')(fs, app, DataStoreGate, root); // Start dynamic navigation module
+const Calendar = require('./server_modules/calendar.js')(root);
 
-var Authentication = require('./server_modules/authentication.js')(app, DataStoreGate, crypto, randomString); // Module for user login and user authentication
+const Navigation = require('./server_modules/navigation.js')(fs, app, DataStoreGate, root); // Start dynamic navigation module
 
-var PageMgmt = require('./server_modules/PageMgmt.js')(app, fs, Navigation, Authentication, DataStoreGate, root); // Module for page management
+const Authentication = require('./server_modules/authentication.js')(app, DataStoreGate, crypto, randomString); // Module for user login and user authentication
 
-var UserMgmt = require('./server_modules/UserMgmt.js')(randomString, app, Authentication, DataStoreGate, Email); // Module for user management
+const PageMgmt = require('./server_modules/PageMgmt.js')(app, fs, Navigation, Authentication, DataStoreGate, root); // Module for page management
 
-var Calendar = require('./server_modules/calendar.js')(root);
+const UserMgmt = require('./server_modules/UserMgmt.js')(randomString, app, Authentication, DataStoreGate, Email); // Module for user management
 
-var Event = require('./server_modules/events.js')(app, Authentication, DataStoreGate, Calendar); // Module for events
+const Event = require('./server_modules/events.js')(app, Authentication, DataStoreGate, Calendar); // Module for events
 
-var Comm = require('./server_modules/comm.js')(app, Authentication, DataStoreGate, Email); // Module for communication
+const Comm = require('./server_modules/comm.js')(app, Authentication, DataStoreGate, Email); // Module for communication
 
-var glob = require("glob");
+
 /**
  * --- THE  SERVER ---
  **/
@@ -84,7 +85,7 @@ app.post('/search', function(req, res) {
                 fs.readFile(file, 'utf8', function(err, data) {
                     filesRead--;
                     // console.log("Reading %s...", file);
-                    if(data.includes(searchStr)){
+                    if (data.includes(searchStr)) {
                         // console.log("Found in File: " + file);
                         listofFiles.push(file);
                     }

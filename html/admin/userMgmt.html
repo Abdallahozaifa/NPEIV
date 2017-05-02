@@ -49,7 +49,7 @@
             <p class='font_small'>Menu</p>
         </div>
 
-        <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">NPEIV</h1>
+        <h1 class='inline-block font_big1' id='nav_title' href="/" data-toggle="tooltip" title="National Partnership to End Interpersonal Violence Across The Lifespan">National Partnership</h1>
 
         <div id='paypal_icon' class='main_header_item float_right font_big fa fa-paypal'>
             <div class='font_small'>Donate</div>
@@ -69,7 +69,6 @@
         $(document).ready(function() {
             $('#userTable').jtable({
                 title: 'NPEIV Users',
-                sorting: true,
                 actions: {
                     listAction: '/post/userMgmt/getAllUsers?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),
                     createAction: '/post/userMgmt/newUser?adminUsername=' + sessionStorage.getItem('username') + '&tempkey=' + sessionStorage.getItem('guid'),

@@ -44,7 +44,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
          privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
-          actionTeams:  req.body['actionTeams'] || req.query['actionTeams'] || []
+         actionTeams: req.body['actionTeams'] || req.query['actionTeams'] || []
       });
 
       // Auth. user
@@ -106,28 +106,39 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
          privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
-         actionTeams:  req.body['actionTeams'] || req.query['actionTeams'] || []
+         actionTeams: req.body['actionTeams'] || req.query['actionTeams'] || []
       });
 
+      if (NEW_USER.password.length <= 6) {
+         res.send(JSON.stringify({
+            Result: "ERROR",
+            Message: "Error Creating User Account -> Password Too Short"
+         }));
+      }
+      else {
+         // Add user to datastore
+         DataStoreGate.addObjToStore(NEW_USER, "User", NEW_USER.username, function(err, data) {
+            if (err) {
+               // Send Back error with message
+               res.send(JSON.stringify({
+                  Result: "ERROR",
+                  Message: "Error Creating User Account -> " + err
+               }));
+            }
+            else {
+               //console.log(NEW_USER);
+               Email.sendMail('noReply-NPEIV', 'Account Created', [{Email: NEW_USER.email}] , NEW_USER.Fname + " your account was created: " + NEW_USER.username);
 
-      // Add user to datastore
-      DataStoreGate.addObjToStore(NEW_USER, "User", NEW_USER.username, function(err, data) {
-         if (err) {
-            // Send Back error with message
-            res.send(JSON.stringify({
-               Result: "ERROR",
-               Message: err
-            }));
-         }
-         else {
-            // Send back ok, with new object
-            res.send(JSON.stringify({
-               Result: "OK",
-               Record: data
-            }));
-         }
+               // Send back ok, with new object
+               res.send(JSON.stringify({
+                  Result: "OK"
+               }));
+            }
 
-      });
+         });
+      }
+
+
 
    });
 
@@ -216,7 +227,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
          privlageLevel: req.body['privlageLevel'] || req.query['privlageLevel'],
-         actionTeams:  req.body['actionTeams'] || req.query['actionTeams']
+         actionTeams: req.body['actionTeams'] || req.query['actionTeams']
       };
 
       // Auth. user
@@ -410,7 +421,7 @@ module.exports = function(randomString, app, Authentication, DataStoreGate, Emai
          title: req.body['title'] || req.query['title'],
          Fname: req.body['Fname'] || req.query['Fname'],
          Lname: req.body['Lname'] || req.query['Lname'],
-         actionTeams:  req.body['actionTeams'] || req.query['actionTeams']
+         actionTeams: req.body['actionTeams'] || req.query['actionTeams']
       };
       // Auth. user
       Authentication.authenticateUser(username, tempkey, function(valid) {

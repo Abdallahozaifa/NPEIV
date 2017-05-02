@@ -272,12 +272,17 @@ h1 {
     }
     #f_search_bar {
         padding: 0;
+        visibility: hidden;
+        height: 0;
     }
     .body_prime {
         padding: 68px 0 0 0;
     }
     .layout {
         padding: 1;
+    }
+    #nav_title {
+        font-size: 1.3em;
     }
 }
 

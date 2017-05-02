@@ -45,9 +45,9 @@ module.exports = function(app, Authentication, DataStoreGate, email) {
 
                         
                     }
-                    console.log(receipents);
+                    //console.log(receipents);
                     
-                    email.sendMail('NPEIV', subject, receipents, message);
+                    email.sendMail('noReply-NPEIV', subject, receipents, message);
                     
                     // Send back OK, with all user objects
                     res.send(JSON.stringify({

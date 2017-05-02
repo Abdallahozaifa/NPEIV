@@ -19,23 +19,19 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
       var username = req.query['username'] || req.body['username'];
       // var email = req.query['email'] || req.body['email'];
       var password = req.query['password'] || req.body['password'];
-
-
-      DataStoreGate.getObjFromStore("User", username, onReturn); // Find user in the datastore
-
-      /* Callback for searching datastore for user object TODO -> IMPROVE SECURITY
-       * @param {object} result - the user object from the datastoreGate
-       */
-      function onReturn(err, user) {
+      
+      // Find user in the datastore
+      DataStoreGate.getObjFromStore("User", username, function(err, user) {
 
          if (err) { // If the returning object is undefined
             // Send Back error with message
             res.send(JSON.stringify({
                Result: "ERROR",
-               Message: "Login failed"
+               Message: "Login failed(4001)"
             }));
          }
          else {
+            //console.log(user.password);
             if (user.password == password) {
                // Check password to authenticate user
 
@@ -45,7 +41,8 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
                   res.send(JSON.stringify({
                      Result: "OK",
                      key: user.tempKey.key,
-                     ttl: user.tempKey.ttl
+                     ttl: user.tempKey.ttl,
+                     lvl: user.privlageLevel
                   }));
 
                }
@@ -59,11 +56,13 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
                   // Update user in database 
                   DataStoreGate.updateObjFromStore("User", user.username, user, function(err, data) {
                      if (!err) {
+                        //console.log(data);
                         // If no error updating user object
                         res.send(JSON.stringify({
                            Result: "OK",
                            key: user.tempKey.key,
-                           ttl: user.tempKey.ttl
+                           ttl: user.tempKey.ttl,
+                           lvl: user.privlageLevel
                         })); // Send key and TTL to the user logging in
                      }
                      else {
@@ -78,18 +77,19 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
 
             }
             else {
+               //console.log(username + ' -> ' + JSON.stringify(user), password);
                // Send Back error with message
                res.send(JSON.stringify({
                   Result: "ERROR",
-                  Message: "Login failed"
+                  Message: "Login failed(4002)"
                }));
             }
          }
-      }
+      });
 
    });
 
-   /**
+   /**y
     * Authenicates a user with their temp key
     * PRE - the user must be logged in
     * @param {String} username - the type of data being added to the datastore
@@ -117,7 +117,7 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
          }
       });
    }
-   
+
    /**
     * Authenicates an admin user with their temp key
     * PRE - the user must be logged in
@@ -146,7 +146,7 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
          }
       });
    }
-   
+
    /**
     * Authenicates if a user with their temp key
     * @param {String} pwd - the new password to validate the complexity
@@ -154,24 +154,24 @@ module.exports = function(app, DataStoreGate, crypto, rngString) {
     */
    this.validatePasswordComplexity = function(pwd) {
       // Criteria : length[10]
-      if ( pwd && pwd.length >= 10) {
+      if (pwd && pwd.length >= 10) {
          return true; // New passwrod valid
       }
       return false; // Length too short
    }
-   
-   
-   
+
+
+
    this.hash = function(pwd) {
-      const secret = "43143988327398957279342419750374600193"; // !!!WARNING - CHANGING THIS WILL BRAKE EVERYTHING!!! 43143988327398957279342419750374600193
-      
-      var hash = crypto.createHmac('sha256', secret)
-                   .update(pwd)
-                   .digest('hex');
-      //console.log(hash);
-      return hash;
-   }
-   //this.hash("I love pizza");
+         const secret = "43143988327398957279342419750374600193"; // !!!WARNING - CHANGING THIS WILL BRAKE EVERYTHING!!! 43143988327398957279342419750374600193
+
+         var hash = crypto.createHmac('sha256', secret)
+            .update(pwd)
+            .digest('hex');
+         //console.log(hash);
+         return hash;
+      }
+      //this.hash("I love pizza");
    return this;
 };
 
